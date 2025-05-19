@@ -190,6 +190,19 @@
             height: calc(3.5rem + 2px);
             line-height: 1.25;
         }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            /* Enhanced orange filter to match text color */
+            filter: sepia(100%) hue-rotate(330deg) saturate(200%) brightness(105%);
+            transition: all 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.05);
+            /* Slight grow effect on hover */
+        }
     </style>
     </head>
 
@@ -209,9 +222,11 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>MotiMahal</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
+    <h1 class="text-primary m-0">
+        <img src="img/logo.jpeg" alt="MotiMahal Logo" class="me-2 rounded logo-img">
+        MotiMahal
+    </h1>
+</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
