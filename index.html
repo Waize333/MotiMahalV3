@@ -21,15 +21,12 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
+    <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Owl Carousel JS -->
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -162,8 +159,39 @@
             right: 0px;
             /* Position at far right */
         }
+
+        /* People counter styling */
+        #people-count {
+            text-align: center;
+        }
+
+        .input-group-append .btn {
+            z-index: 0;
+            border-radius: 0;
+        }
+
+        .input-group-append .btn:first-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .input-group-append .btn:last-child {
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Fix for form-floating inside input group */
+        .input-group .form-floating {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group .form-floating> .form-control {
+            height: calc(3.5rem + 2px);
+            line-height: 1.25;
+        }
     </style>
-</head>
+    </head>
 
 <body>
     <div class="container-xxl bg-white p-0">
@@ -203,16 +231,17 @@
                 <div class="container my-5 py-5">
                     <div class="row align-items-center g-5">
                         <div class="col-lg-6 text-center text-lg-start">
-                            <<h1 class="display-3 text-white animated slideInLeft">Genießen Sie unser<br>köstliches
+                            <h1 class="display-3 text-white animated slideInLeft">Genießen Sie unser<br>köstliches
                                 Essen</h1>
-                                <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita.
-                                    Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                                    sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                                <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
-                                    reservieren</a>
+                            <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita.
+                                Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
+                                sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                            <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
+                                reservieren</a>
+                            <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img class="img-fluid" src="img/image.png" alt="">
+                            <img class="img-fluid" src="img/midpic.png" alt="">
                         </div>
                     </div>
                 </div>
@@ -295,7 +324,7 @@
                     <h1 class="mb-5">Beliebteste Gerichte</h1>
                 </div>
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5"
+                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5 owl-carousel category-carousel"
                         id="menu-categories">
                         <!-- Menu categories will be dynamically inserted here -->
                     </ul>
@@ -321,11 +350,43 @@
                 const categoryContainer = document.getElementById('menu-categories');
                 const menuItemsContainer = document.getElementById('menu-items-container');
 
-                // Use all categories
-                const displayedCategories = menu;
+                // Define the "Mittagskarte" category with its description
+                const mittagskarteCategory = {
+                    category: "Mittagskarte",
+                    headline: "Business Lunch Menu Montag bis Freitag 11:30 bis 17:00 Uhr (außer Feiertagen)",
+                    items: [
+                        // Combine items from the removed categories
+                        ...(menu.find(cat => cat.category === "Vegetarische-Gerichte")?.items || []),
+                        ...(menu.find(cat => cat.category === "Hähnchenfleisch-Gerichte")?.items || []),
+                        ...(menu.find(cat => cat.category === "Lammfleisch-Gerichte")?.items || []),
+                        ...(menu.find(cat => cat.category === "Entenfleisch-Gerichte")?.items || []),
+                        ...(menu.find(cat => cat.category === "Rindfleisch-Gerichte")?.items || []),
+                        ...(menu.find(cat => cat.category === "Tandoori")?.items || []),
+                        ...(menu.find(cat => cat.category === "Thali")?.items || []),
+                        ...(menu.find(cat => cat.category === "Beilagen")?.items || [])
+                    ]
+                };
 
-                // First, replace the default tab nav with a carousel structure
+                // Use all categories, including the "Mittagskarte"
+                const displayedCategories = [
+                    mittagskarteCategory,
+                    ...menu.filter(cat =>
+                        ![
+                            "Thali",
+                            "Vegetarische-Gerichte",
+                            "Hähnchenfleisch-Gerichte",
+                            "Lammfleisch-Gerichte",
+                            "Entenfleisch-Gerichte",
+                            "Rindfleisch-Gerichte",
+                            "Tandoori",
+                            "Beilagen"
+                        ].includes(cat.category)
+                    )
+                ];
+
+                // Replace the default tab nav with a carousel structure
                 categoryContainer.className = "owl-carousel category-carousel border-bottom mb-5";
+                categoryContainer.innerHTML = ""; // Clear any existing content
 
                 // Generate menu content
                 displayedCategories.forEach((categoryObj, index) => {
@@ -350,14 +411,11 @@
 
                     categoryContainer.innerHTML += tabItem;
 
-                    // Show all items instead of limiting to 6
+                    // Show all items
                     let itemsHTML = '';
 
                     if (categoryObj.items && categoryObj.items.length > 0) {
-                        // Display all items
-                        const displayItems = categoryObj.items;
-
-                        displayItems.forEach(item => {
+                        categoryObj.items.forEach(item => {
                             itemsHTML += `
                                 <div class="col-lg-6">
                                     <div class="menu-item border-start border-5 border-primary px-3">
@@ -372,8 +430,15 @@
                         });
                     }
 
+                    const headlineHTML = categoryObj.headline
+                        ? `<div class="text-center mb-4">
+                                <h5 class="text-primary">${categoryObj.headline}</h5>
+                           </div>`
+                        : '';
+
                     const paneHTML = `
-                        <div id="${categoryId}" class="tab-pane fade show p-0 ${isActive}">
+                        <div id="${categoryId}" class="tab-pane fade ${isActive ? 'show active' : ''} p-0">
+                            ${headlineHTML}
                             <div class="row g-4">
                                 ${itemsHTML}
                             </div>
@@ -383,82 +448,55 @@
                     menuItemsContainer.innerHTML += paneHTML;
                 });
 
-                // Initialize the owl carousel for categories
-                $('.category-carousel').owlCarousel({
-                    loop: false,
-                    margin: 10,
-                    nav: false,
-                    dots: false,
-                    autoWidth: false,
-                    responsive: {
-                        0: {
-                            items: 1
-                        },
-                        576: {
-                            items: 2
-                        },
-                        768: {
-                            items: 3
-                        },
-                        992: {
-                            items: 4
-                        },
-                        1200: {
-                            items: 5
+                // Initialize Owl Carousel when jQuery is ready
+                $(document).ready(function() {
+                    // Give a short delay to ensure DOM is fully ready
+                    setTimeout(function() {
+                        if (!$('.category-carousel').hasClass('owl-loaded')) {
+                            $('.category-carousel').owlCarousel({
+                                loop: false,
+                                margin: 10,
+                                nav: false,
+                                dots: false,
+                                autoWidth: false,
+                                responsive: {
+                                    0: { items: 1 },
+                                    576: { items: 2 },
+                                    768: { items: 3 },
+                                    992: { items: 4 },
+                                    1200: { items: 5 }
+                                },
+                                navText: [
+                                    '<i class="bi bi-arrow-left"></i>',
+                                    '<i class="bi bi-arrow-right"></i>'
+                                ]
+                            });
+                            
+                            console.log('Carousel initialized successfully');
                         }
-                    },
-                    navText: [
-                        '<i class="bi bi-arrow-left"></i>',
-                        '<i class="bi bi-arrow-right"></i>'
-                    ],
-                    onInitialized: function () {
-                        // Make first tab active
-                        const firstTab = $('.category-carousel .category-item a').first();
-                        const firstTabId = firstTab.attr('href');
 
-                        firstTab.addClass('active');
-                        $(firstTabId).addClass('active show');
-
-                        // Set up click handling
-                        $('.category-carousel .category-item a').on('click', function (e) {
+                        // Make sure first tab is active
+                        if (!$('.tab-pane.active').length) {
+                            $('#tab-1').addClass('active show');
+                            $('.category-carousel .category-item a').first().addClass('active');
+                        }
+                        
+                        // Set up proper click handling for tabs
+                        $('.category-carousel .category-item a').on('click', function(e) {
                             e.preventDefault();
-
+                            
                             // Remove active class from all tabs and panes
                             $('.category-carousel .category-item a').removeClass('active');
                             $('.tab-pane').removeClass('active show');
-
+                            
                             // Add active class to clicked tab and corresponding pane
                             $(this).addClass('active');
                             $($(this).attr('href')).addClass('active show');
-                        });
-                    }
-                });
-
-                // Fix tab transitions
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Wait for the carousel to initialize
-                    setTimeout(function () {
-                        // Ensure proper first tab activation
-                        const firstTabId = '#tab-1';
-                        $(firstTabId).addClass('active show');
-
-                        // Add manual trigger for tab events to support Bootstrap's tab system
-                        $('.category-carousel .category-item a').on('click', function (e) {
-                            e.preventDefault();
-                            const targetTab = $(this).attr('href');
-
-                            // Deactivate all tabs
-                            $('.tab-pane').removeClass('active show');
-                            $('.category-carousel .category-item a').removeClass('active');
-
-                            // Activate selected tab
-                            $(targetTab).addClass('active show');
-                            $(this).addClass('active');
-
-                            // Scroll to tab content for mobile
+                            
+                            // Scroll to tab content on mobile
                             if (window.innerWidth < 768) {
                                 $('html, body').animate({
-                                    scrollTop: $(targetTab).offset().top - 120
+                                    scrollTop: $($(this).attr('href')).offset().top - 120
                                 }, 300);
                             }
                         });
@@ -492,13 +530,7 @@
                 function getCategoryIcon(category) {
                     const lowerCategory = category.toLowerCase();
                     const icons = {
-                        'thalis': 'fa fa-utensils',
-                        'vegetarische-gerichte': 'fa fa-leaf',
-                        'hähnchenfleisch-gerichte': 'fa fa-drumstick-bite',
-                        'lammfleisch-gerichte': 'fa fa-bacon',
-                        'entenfleisch-gerichte': 'fa fa-feather',
-                        'rindfleisch-gerichte': 'fa fa-hamburger',
-                        'beilagen': 'fa fa-concierge-bell',
+                        'mittagskarte': 'fa fa-utensils',
                         'suppen': 'fa fa-hotdog',
                         'kalte vorspeisen': 'fa fa-cheese',
                         'warme vorspeisen': 'fa fa-temperature-high',
@@ -535,6 +567,64 @@
                     return 'fa fa-utensils';  // default icon
                 }
             });
+
+            // Helper function to format category name
+            function formatCategoryName(category) {
+                // Special handling for categories with dashes
+                if (category.includes('-')) {
+                    return category.split('-').map(word =>
+                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                    ).join(' ');
+                }
+
+                // Special handling for camelCase categories
+                if (/[a-z][A-Z]/.test(category)) {
+                    return category
+                        .replace(/([a-z])([A-Z])/g, '$1 $2')
+                        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+                        .charAt(0).toUpperCase() + category
+                            .replace(/([a-z])([A-Z])/g, '$1 $2')
+                            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+                            .slice(1);
+                }
+
+                return category.charAt(0).toUpperCase() + category.slice(1);
+            }
+
+            // Helper function to get appropriate icon for category
+            function getCategoryIcon(category) {
+                const lowerCategory = category.toLowerCase();
+                const icons = {
+                    'mittagskarte': 'fa fa-utensils',
+                    'suppen': 'fa fa-hotdog',
+                    'kalte vorspeisen': 'fa fa-cheese',
+                    'warme vorspeisen': 'fa fa-temperature-high',
+                    'saladsandtandoori': 'fa fa-salad',
+                    'chickenspecials': 'fa fa-drumstick-bite',
+                    'duckspecials': 'fa fa-feather-alt',
+                    'lambspecials': 'fa fa-bacon',
+                    'beefspecials': 'fa fa-hamburger',
+                    'porkspecials': 'fa fa-piggy-bank',
+                    'fishspecials': 'fa fa-fish',
+                    'vegetarianspecials': 'fa fa-seedling',
+                    'ricespecials': 'fa fa-bowl-rice',
+                    'attachments': 'fa fa-utensils',
+                    'tandooribreadspecialties': 'fa fa-bread-slice',
+                    'desserts': 'fa fa-ice-cream',
+                    'aperitifs': 'fa fa-glass-martini',
+                    'beers': 'fa fa-beer',
+                    'indiandrinks': 'fa fa-glass-whiskey',
+                    'nonalcoholicdrinks': 'fa fa-tint',
+                    'teaspecials': 'fa fa-mug-hot',
+                    'hotdrinks': 'fa fa-coffee',
+                    'whiskyandspirits': 'fa fa-wine-bottle',
+                    'wines': 'fa fa-wine-glass',
+                    'redwines': 'fa fa-wine-glass-alt',
+                    'sparklingwines': 'fa fa-glass-cheers'
+                };
+
+                return icons[lowerCategory] || 'fa fa-utensils'; // Default icon
+            }
         </script>
 
 
@@ -570,12 +660,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <select class="form-select" id="select1">
-                                            <option value="1">People 1</option>
-                                            <option value="2">People 2</option>
-                                            <option value="3">People 3</option>
-                                        </select>
-                                        <label for="Anzahl der Personen"</label>
+                                        <div class="input-group">
+                                            <div class="form-floating flex-grow-1">
+                                                <input type="number" class="form-control" id="people-count" value="2" min="1"
+                                                    max="20" readonly>
+                                                <label for="people-count">Anzahl der Personen</label>
+                                            </div>
+                                            <div class="input-group-append d-flex">
+                                                <button type="button" class="btn btn-primary h-100" id="decrease-people"><i
+                                                        class="fa fa-minus"></i></button>
+                                                <button type="button" class="btn btn-primary h-100" id="increase-people"><i
+                                                        class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -746,43 +843,32 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Initialize the Owl Carousel for the category slider
-            $('.category-carousel').owlCarousel({
-                loop: false,
-                margin: 10,
-                nav: true, // Enable navigation arrows
-                dots: false, // Disable dots
-                autoWidth: false,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    576: {
-                        items: 2
-                    },
-                    768: {
-                        items: 3
-                    },
-                    992: {
-                        items: 4
-                    },
-                    1200: {
-                        items: 5
-                    }
-                },
-                navText: [
-                    '<i class="bi bi-arrow-left"></i>', // Left arrow
-                    '<i class="bi bi-arrow-right"></i>' // Right arrow
-                ]
-            });
 
-            // Move arrows to the ends of the slider
-            const owlNav = $('.category-carousel .owl-nav');
-            owlNav.addClass('custom-nav');
-            owlNav.find('.owl-prev').css('left', '-50px'); // Move left arrow to the far left
-            owlNav.find('.owl-next').css('right', '-50px'); // Move right arrow to the far right
+    <script>
+        // People counter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const peopleCount = document.getElementById('people-count');
+            const increaseBtn = document.getElementById('increase-people');
+            const decreaseBtn = document.getElementById('decrease-people');
+            
+            // Set initial value
+            peopleCount.value = 2;
+            
+            // Increase people count
+            increaseBtn.addEventListener('click', function() {
+                let currentValue = parseInt(peopleCount.value);
+                if (currentValue < 20) {
+                    peopleCount.value = currentValue + 1;
+                }
+            });
+            
+            // Decrease people count
+            decreaseBtn.addEventListener('click', function() {
+                let currentValue = parseInt(peopleCount.value);
+                if (currentValue > 1) {
+                    peopleCount.value = currentValue - 1;
+                }
+            });
         });
     </script>
 </body>
