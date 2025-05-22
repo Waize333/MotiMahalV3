@@ -509,3 +509,14 @@
     filter: none;
     transition: all 0.3s ease;
 }
+
+.text-primary {
+    color: var(--primary) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+.text-dark {
+    color: var(--dark) !important;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontakt | MotiMahal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f4f4;
+        }
+        .contact-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 2.5rem 2rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+        .contact-title {
+            color: var(--primary);
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+        .form-label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: #a80000;
+        }
+        @media (max-width: 576px) {
+            .contact-card {
+                padding: 1.2rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <a href="index.html" class="navbar-brand p-0">
+            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>MotiMahal</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                <a href="index.html" class="nav-item nav-link">Startseite</a>
+                <a href="index.html#about" class="nav-item nav-link">Über uns</a>
+                <a href="index.html#menu" class="nav-item nav-link">Speisekarte</a>
+                <a href="contact.html" class="nav-item nav-link active">Kontakt</a>
+                <a href="impressum.html" class="nav-item nav-link">Impressum</a>
+                <a href="gallery.html" class="nav-item nav-link">Bilder</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-5">
+        <div class="contact-card">
+            <h1 class="mb-4 text-center contact-title"><i class="fa fa-envelope-open-text me-2"></i>Kontakt</h1>
+            <div class="contact-info mb-4 text-center">
+                <p><i class="fa fa-phone"></i>+012 345 67890</p>
+                <p><i class="fa fa-envelope"></i><a href="mailto:romanmiah56@yahoo.de" style="color:var(--primary);text-decoration:underline;">romanmiah56@yahoo.de</a></p>
+            </div>
+            <form>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Ihr Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Ihr Name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Ihre E-Mail</label>
+                    <input type="email" class="form-control" id="email" placeholder="Ihre E-Mail">
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Nachricht</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Ihre Nachricht"></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary px-5">Absenden</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
