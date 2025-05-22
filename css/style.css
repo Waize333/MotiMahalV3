@@ -2,7 +2,7 @@
 :root {
     --primary: #8B0000; /* Changed from #FEA116 (orange) to #8B0000 (redwine) */
     --light: #F1F8FF;
-    --dark: #0F172B;
+    --dark:   #c3c3c3 ;
 }
 
 
@@ -134,11 +134,26 @@
     }
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--primary) !important; /* Primary color for all links */
+    transition: color 0.2s;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #fff !important; /* White for active/hovered links */
+}
+
 
 /*** Hero Header ***/
 .hero-header {
     position: relative;
     z-index: 1;
+}
+
+.hero-header .col-lg-6.text-center.text-lg-start {
+    margin-top: -60px; /* Adjust value as needed, e.g. -30px or -50px */
 }
 
 .hero-header::before {
@@ -151,9 +166,9 @@
     background: url(../img/logo.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(0.5px) brightness(1); /* Added brightness to create a white blur effect */
-    -webkit-filter: blur(0.5px) brightness(1); /* For Safari support */
+    background-size: cover; /
+    filter: none; /* Remove blur and brightness */
+    -webkit-filter: none;
     z-index: -1;
 }
 
@@ -164,7 +179,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.15); /* Adding a white overlay for more whitish blur */
     z-index: -1;
 }
 

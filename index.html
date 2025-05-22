@@ -167,12 +167,6 @@
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="display-3 text-primary animated slideInLeft">Genießen Sie unser<br>köstliches
                                 Essen</h1>
-                            <p class="text-dark animated slideInLeft mb-4 pb-2">Erleben Sie authentische indische
-                                Küche im Moti Mahal
-                                Genießen Sie aromatische Currys, frisch gebackenes Naan und traditionelle
-                                Tandoori-Spezialitäten.
-                                Ein kulinarisches Erlebnis voller Gewürze, Geschmack und Gastfreundschaft – täglich für
-                                Sie geöffnet!</p>
                             <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
                                 reservieren</a>
                             <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
@@ -363,7 +357,6 @@
 
                     // Use all categories, including the "Mittagskarte"
                     const displayedCategories = [
-                        mittagskarteCategory,
                         ...menu.filter(cat =>
                             ![
                                 "Thali",
@@ -375,7 +368,8 @@
                                 "Tandoori",
                                 "Beilagen"
                             ].includes(cat.category)
-                        )
+                        ),
+                        mittagskarteCategory,
                     ];
 
                     // Replace the default tab nav with a slider structure
