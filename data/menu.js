@@ -337,114 +337,119 @@ var menu = [
     ]
   }
 ,{
-category: "saladsAndTandoori" ,
-items: [
-  {
-    id: "29",
-    category: "Salate",
-    name: "Salat Saison",
-    description: "Gemischter Salat mit Frenchdressing, auf Wunsch auch mit Essig und Öl / Mixed salad with french dressing or, if preferred, with oil and vinegar",
-    price: "4,90 €"
-  },
-  {
-    id: "30",
-    category: "Salate",
-    name: "Tomatensalat",
-    description: "Mit Zwiebeln, Essig, Öl / Tomato salad with onions, vinegar and oil",
-    price: "4,90 €"
-  },
-  {
-    id: "31",
-    category: "Salate",
-    name: "Salat Moti Mahal",
-    description: "Gemischter Salat mit Shrimps, Ananas, Käse, Mais / Mixed salad with shrimps, pineapple, cheese, corn",
-    price: "8,90 €"
-  },
-  {
-    id: "32",
-    category: "Salate",
-    name: "Salat Indisch",
-    description: "Mit gebratenen Hühnerbrustfiletstreifen, frischen Champignons, Mais, Zwiebeln und Joghurtdressing / Salad with fried chicken breast strips, fresh mushrooms, corn, in yogurt dressing",
-    price: "8,90 €"
-  },
-  {
-    id: "33",
-    category: "Salate",
-    name: "Kleiner gemischter Salat als Beilage",
-    description: "Small mixed salad as side dish",
-    price: "3,90 €"
-  },
-  {
-    id: "35",
-    category: "Tandoori",
-    name: "Tandoori",
-    description: "Hausgemachter Käse, Blumenkohl, Tomaten, Zwiebeln, Zucchini, Ananas, Auberginen und Paprika am Spieß gegrillt / Homemade cheese, cauliflower, tomatoes, onions, zucchini, pineapple, eggplant, and sweet pepper grilled on a skewer",
-    price: "12,90 €"
-  },
-  {
-    id: "36",
-    category: "Tandoori",
-    name: "Tandoori-Chicken",
-    description: "Hähnchenschenkel mariniert nach einem berühmten Nordindischen Rezept / Chicken legs marinated in an exquisite North Indian tradition",
-    price: "15,90 €"
-  },
-  {
-    id: "37",
-    category: "Tandoori",
-    name: "Chicken Tikka",
-    description: "Zarte marinierte Hühnerfleischstücke, gegrillt / Tender marinated filet of chicken, grilled",
-    price: "16,90 €"
-  },
-  {
-    id: "38",
-    category: "Tandoori",
-    name: "Achari Chicken Tikka",
-    description: "Zartes mariniertes Hühnerfleisch, gegrillt mit einer eingelegten Mischung aus Obst und Gemüse nach traditioneller nordindischer Art, pikant / Tender marinated chicken pieces grilled with vegetable in a traditional North Indian way, spicy",
-    price: "16,90 €"
-  },
-  {
-    id: "39",
-    category: "Tandoori",
-    name: "Haryali Malai Kabab",
-    description: "Zartes mariniertes Hühnerfleisch in Spinat-, Minze-, und Koriandersoße mit Beilage / Tender marinated chicken in spinach, mint, and coriander sauce",
-    price: "16,90 €"
-  },
-  {
-    id: "40",
-    category: "Tandoori",
-    name: "Lamb Chops",
-    description: "Zarte Lammkoteletts in würziger Soße mariniert / Tender lamb chops marinated in a spicy sauce",
-    price: "21,90 €"
-  },
-  {
-    id: "41",
-    category: "Tandoori",
-    name: "Mutton Sheekh Kabab",
-    description: "Frisch gehacktes Lammfleisch gegrillt, zubereitet mit Knoblauch, Tomaten, Ingwer / Fresh minced lamb grilled, prepared with garlic, tomatoes, and ginger",
-    price: "16,90 €"
-  },
-  {
-    id: "42",
-    category: "Tandoori",
-    name: "Jheenga Tandoori",
-    description: "Riesengarnelen in Joghurt und Gewürzen eingelegt, knusprig gegrillt / King prawns marinated in yogurt and spices, grilled",
-    price: "22,90 €"
-  },
-  {
-    id: "43",
-    category: "Tandoori",
-    name: "Mix-Grill-Platte",
-    description: "Etwas von allen Tandoori-Köstlichkeiten / The various Tandoori specialties combined",
-    price: "21,90 €"
-  },
-  {
-    id: "44",
-    category: "Tandoori",
-    name: "Moti Mahal - Teller",
-    description: "Verschiedenes Hühner- und Lammfleisch in frischem Gemüse, mit Reis und Nan / Mixed chicken and lamb in fresh vegetables with rice and nan",
-    price: "21,90 €"
-  }
-]
+  category: "salads",
+  items: [
+    {
+      id: "29",
+      category: "Salate",
+      name: "Salat Saison",
+      description: "Gemischter Salat mit Frenchdressing, auf Wunsch auch mit Essig und Öl / Mixed salad with french dressing or, if preferred, with oil and vinegar",
+      price: "4,90 €"
+    },
+    {
+      id: "30",
+      category: "Salate",
+      name: "Tomatensalat",
+      description: "Mit Zwiebeln, Essig, Öl / Tomato salad with onions, vinegar and oil",
+      price: "4,90 €"
+    },
+    {
+      id: "31",
+      category: "Salate",
+      name: "Salat Moti Mahal",
+      description: "Gemischter Salat mit Shrimps, Ananas, Käse, Mais / Mixed salad with shrimps, pineapple, cheese, corn",
+      price: "8,90 €"
+    },
+    {
+      id: "32",
+      category: "Salate",
+      name: "Salat Indisch",
+      description: "Mit gebratenen Hühnerbrustfiletstreifen, frischen Champignons, Mais, Zwiebeln und Joghurtdressing / Salad with fried chicken breast strips, fresh mushrooms, corn, in yogurt dressing",
+      price: "8,90 €"
+    },
+    {
+      id: "33",
+      category: "Salate",
+      name: "Kleiner gemischter Salat als Beilage",
+      description: "Small mixed salad as side dish",
+      price: "3,90 €"
+    }
+  ]
+},
+{
+  category: "tandoori",
+  items: [
+    {
+      id: "35",
+      category: "Tandoori",
+      name: "Tandoori",
+      description: "Hausgemachter Käse, Blumenkohl, Tomaten, Zwiebeln, Zucchini, Ananas, Auberginen und Paprika am Spieß gegrillt / Homemade cheese, cauliflower, tomatoes, onions, zucchini, pineapple, eggplant, and sweet pepper grilled on a skewer",
+      price: "12,90 €"
+    },
+    {
+      id: "36",
+      category: "Tandoori",
+      name: "Tandoori-Chicken",
+      description: "Hähnchenschenkel mariniert nach einem berühmten Nordindischen Rezept / Chicken legs marinated in an exquisite North Indian tradition",
+      price: "15,90 €"
+    },
+    {
+      id: "37",
+      category: "Tandoori",
+      name: "Chicken Tikka",
+      description: "Zarte marinierte Hühnerfleischstücke, gegrillt / Tender marinated filet of chicken, grilled",
+      price: "16,90 €"
+    },
+    {
+      id: "38",
+      category: "Tandoori",
+      name: "Achari Chicken Tikka",
+      description: "Zartes mariniertes Hühnerfleisch, gegrillt mit einer eingelegten Mischung aus Obst und Gemüse nach traditioneller nordindischer Art, pikant / Tender marinated chicken pieces grilled with vegetable in a traditional North Indian way, spicy",
+      price: "16,90 €"
+    },
+    {
+      id: "39",
+      category: "Tandoori",
+      name: "Haryali Malai Kabab",
+      description: "Zartes mariniertes Hühnerfleisch in Spinat-, Minze-, und Koriandersoße mit Beilage / Tender marinated chicken in spinach, mint, and coriander sauce",
+      price: "16,90 €"
+    },
+    {
+      id: "40",
+      category: "Tandoori",
+      name: "Lamb Chops",
+      description: "Zarte Lammkoteletts in würziger Soße mariniert / Tender lamb chops marinated in a spicy sauce",
+      price: "21,90 €"
+    },
+    {
+      id: "41",
+      category: "Tandoori",
+      name: "Mutton Sheekh Kabab",
+      description: "Frisch gehacktes Lammfleisch gegrillt, zubereitet mit Knoblauch, Tomaten, Ingwer / Fresh minced lamb grilled, prepared with garlic, tomatoes, and ginger",
+      price: "16,90 €"
+    },
+    {
+      id: "42",
+      category: "Tandoori",
+      name: "Jheenga Tandoori",
+      description: "Riesengarnelen in Joghurt und Gewürzen eingelegt, knusprig gegrillt / King prawns marinated in yogurt and spices, grilled",
+      price: "22,90 €"
+    },
+    {
+      id: "43",
+      category: "Tandoori",
+      name: "Mix-Grill-Platte",
+      description: "Etwas von allen Tandoori-Köstlichkeiten / The various Tandoori specialties combined",
+      price: "21,90 €"
+    },
+    {
+      id: "44",
+      category: "Tandoori",
+      name: "Moti Mahal - Teller",
+      description: "Verschiedenes Hühner- und Lammfleisch in frischem Gemüse, mit Reis und Nan / Mixed chicken and lamb in fresh vegetables with rice and nan",
+      price: "21,90 €"
+    }
+  ]
 },
 {
 category: "chickenSpecials",

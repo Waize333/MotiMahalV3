@@ -21,266 +21,107 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.theme.default.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
     <style>
-        .category-carousel .owl-nav {
+        /* Category Slider Styles */
+        .category-slider-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .category-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 1rem;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .category-slider::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari */
+        }
+
+        .category-item {
+            flex: 0 0 auto;
+            min-width: 180px;
+            max-width: 220px;
+        }
+
+        .category-arrow {
             position: absolute;
             top: 50%;
-            width: 100%;
             transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-            /* Allow clicks to pass through */
-        }
-
-        .category-carousel .owl-nav button {
-            position: absolute;
+            background: rgba(139, 0, 0, 0.8);
+            border: none;
+            color: #fff;
             width: 40px;
             height: 40px;
-            background: rgba(0, 0, 0, 0.2);
-            border: none;
             border-radius: 50%;
-            pointer-events: auto;
-            /* Enable clicks on buttons */
-            z-index: 10;
-            transition: background 0.3s ease;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
         }
 
-        .category-carousel .owl-nav button:hover {
-            background: rgba(0, 0, 0, 0.5);
+        .category-arrow:hover {
+            background: #a30000;
         }
 
-        .category-carousel .owl-nav button i {
-            font-size: 20px;
-            color: white;
+        .category-arrow.left {
+            left: -20px;
         }
 
-        .category-carousel .owl-nav button.owl-prev {
-            left: -50px;
-            /* Move left arrow to the far left */
+        .category-arrow.right {
+            right: -20px;
         }
 
-        .category-carousel .owl-nav button.owl-next {
-            right: -50px;
-            /* Move right arrow to the far right */
+        @media (max-width: 600px) {
+            .category-item {
+                min-width: 130px;
+                max-width: 150px;
+            }
+
+            .category-arrow.left {
+                left: 0;
+            }
+
+            .category-arrow.right {
+                right: 0;
+            }
         }
 
-        .category-carousel .category-item {
-            padding: 5px;
-            text-align: center;
-        }
-
-        .category-carousel .category-item a.active {
-            border-bottom: 3px solid var(--bs-primary);
+        .category-tab {
             position: relative;
         }
 
-        .category-carousel .category-item a.active::after {
-            content: '';
+        .category-tab .active-underline {
+            display: block;
             position: absolute;
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            border-radius: 50%;
-        }
-
-        @media (max-width: 768px) {
-            .category-carousel .owl-nav button {
-                width: 30px;
-                height: 30px;
-            }
-
-            .category-carousel .owl-nav button.owl-prev {
-                left: -15px;
-            }
-
-            .category-carousel .owl-nav button.owl-next {
-                right: -15px;
-            }
-        }
-
-        /* Update these specific arrow positioning styles */
-        .category-carousel {
-            position: relative;
-            padding: 0 50px;
-            /* Make room for the arrows */
-        }
-
-        .category-carousel .owl-nav {
-            position: absolute;
-            top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            /* Let clicks pass through to carousel */
-        }
-
-        .category-carousel .owl-nav button {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: rgba(139, 0, 0, 0.2) !important;
-            /* Redwine color with transparency */
-            border-radius: 50%;
-            color: #8B0000 !important;
-            font-size: 20px !important;
-            transition: all 0.3s ease;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: auto;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .category-carousel .owl-nav button:hover {
-            background: rgba(139, 0, 0, 0.5) !important;
-            color: #ffffff !important;
-        }
-
-        .category-carousel .owl-nav button span {
-            font-size: 26px;
-            line-height: 0.5;
-        }
-
-        .category-carousel .owl-nav button.owl-prev {
-            left: -20px;
-        }
-
-        .category-carousel .owl-nav button.owl-next {
-            right: -20px;
-        }
-
-        .category-carousel .category-item a.active {
-            border-bottom: 3px solid #8B0000;
-            /* Changed from var(--bs-primary) to direct redwine color */
-            position: relative;
-        }
-
-        /* Update the dot indicator under active category to redwine */
-        .category-carousel .category-item a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background-color: #8B0000;
-            /* Changed from var(--primary) to direct redwine color */
-            border-radius: 50%;
-        }
-
-        /* Add navigation buttons to carousel with redwine color */
-        .category-carousel .owl-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            transform: translateY(-50%);
-            display: flex;
-            justify-content: space-between;
-            pointer-events: none;
-        }
-
-        /* Style the navigation buttons with redwine color */
-        .category-carousel .owl-nav button {
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            background: rgba(139, 0, 0, 0.2) !important;
-            /* Redwine color with transparency */
-            border-radius: 50%;
-            color: #8B0000 !important;
-            font-size: 20px !important;
-            transition: all 0.3s ease;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: auto;
-            display: flex !important;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-        }
-
-        .category-carousel .owl-nav button:hover {
-            background: rgba(139, 0, 0, 0.5) !important;
-            color: #ffffff !important;
-        }
-
-        .category-carousel .owl-nav button span {
-            font-size: 26px;
-            line-height: 0.5;
-        }
-
-        .category-carousel .owl-nav button.owl-prev {
-            left: -20px;
-        }
-
-        .category-carousel .owl-nav button.owl-next {
-            right: -20px;
-        }
-
-        /* People counter styling */
-        #people-count {
-            text-align: center;
-        }
-
-        .input-group-append .btn {
-            z-index: 0;
-            border-radius: 0;
-        }
-
-        .input-group-append .btn:first-child {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        .input-group-append .btn:last-child {
-            border-top-right-radius: 4px;
-            border-bottom-right-radius: 4px;
-        }
-
-        /* Fix for form-floating inside input group */
-        .input-group .form-floating {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group .form-floating> .form-control {
-            height: calc(3.5rem + 2px);
-            line-height: 1.25;
-        }
-
-        .logo-img {
-            height: 60px;
-            width: auto;
-            /* Enhanced orange filter to match text color */
-            filter: sepia(100%) hue-rotate(330deg) saturate(200%) brightness(105%);
-            transition: all 0.3s ease;
-        }
-
-        .logo-img:hover {
-            transform: scale(1.05);
-            /* Slight grow effect on hover */
+            height: 4px;
+            background: #8b0000;
+            border-radius: 2px 2px 0 0;
+            transition: all 0.2s;
         }
     </style>
 </head>
@@ -301,10 +142,10 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-    <h1 class="text-primary m-0">
-        <i class="fa fa-utensils me-3"></i>MotiMahal
-    </h1>
-</a>
+                    <h1 class="text-primary m-0">
+                        <i class="fa fa-utensils me-3"></i>MotiMahal
+                    </h1>
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
@@ -321,194 +162,257 @@
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
-    <div class="container my-5 py-5">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-dark animated slideInLeft">Genießen Sie unser<br>köstliches
-                    Essen</h1>
-                <p class="text-dark animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita.
-                    Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                    sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
-                    reservieren</a>
-                <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
-            </div>
-            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                <img class="img-fluid" src="img/midpic.png" alt="">
-            </div>
-        </div>
-    </div>
-</div>
-        <!-- Navbar & Hero End -->
-
-
-        <!-- About Start -->
-        <div id="about" class="container-xxl py-5">
-            <div class="container">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-6">
-                        <div class="row g-3">
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                                    src="img/gallery-4.jpg">
-                            </div>
-                            <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
-                                    src="img/gallery-8.jpg" style="margin-top: 25%;">
-                            </div>
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                                    src="img/gallery-6.jpg">
-                            </div>
-                            <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                                    src="img/gallery-7.jpg">
-                            </div>
+                <div class="container my-5 py-5">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6 text-center text-lg-start">
+                            <h1 class="display-3 text-primary animated slideInLeft">Genießen Sie unser<br>köstliches
+                                Essen</h1>
+                            <p class="text-dark animated slideInLeft mb-4 pb-2">Erleben Sie authentische indische
+                                Küche im Moti Mahal
+                                Genießen Sie aromatische Currys, frisch gebackenes Naan und traditionelle
+                                Tandoori-Spezialitäten.
+                                Ein kulinarisches Erlebnis voller Gewürze, Geschmack und Gastfreundschaft – täglich für
+                                Sie geöffnet!</p>
+                            <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
+                                reservieren</a>
+                            <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
+                        </div>
+                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                            <img class="img-fluid" src="img/midpic.png" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Über uns</h5>
-                        <h1 class="mb-4">Willkommen bei <i class="fa fa-utensils text-primary me-2"></i>MotiMahal</h1>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-                            diam et eos erat ipsum et lorem et sit, sed stet lorem sit.</p>
-                        <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
-                            diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna
-                            dolore erat amet</p>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Mehr erfahren</a>
-                        <div class="row g-4 mb-4">
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">15
-                                    </h1>
-                                    <div class="ps-4">
-                                        <p class="mb-0">Years of</p>
-                                        <h6 class="text-uppercase mb-0">Experience</h6>
-                                    </div>
+                </div>
+            </div>
+            <!-- Navbar & Hero End -->
+
+
+            <!-- About Start -->
+            <div id="about" class="container-xxl py-5">
+                <div class="container">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="row g-3">
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
+                                        src="img/p1.jpeg">
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">50
-                                    </h1>
-                                    <div class="ps-4">
-                                        <p class="mb-0">Popular</p>
-                                        <h6 class="text-uppercase mb-0">Master Chefs</h6>
-                                    </div>
+                                <div class="col-6 text-start">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
+                                        src="img/p2.jpeg" style="margin-top: 25%;">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
+                                        src="img/p3.jpeg">
+                                </div>
+                                <div class="col-6 text-end">
+                                    <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
+                                        src="img/p4.jpeg">
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                        <div class="col-lg-6">
+                            <h5 class="section-title ff-secondary text-start text-primary fw-normal">Über uns</h5>
+                            <h1 class="mb-4">Willkommen bei <i class="fa fa-utensils text-primary me-2"></i>MotiMahal
+                            </h1>
+                            <p class="mb-4">Im Moti Mahal erleben Sie authentische indische Küche in stilvollem
+                                Ambiente. Unsere Gerichte werden mit frischen Zutaten, traditionellen Gewürzen und viel
+                                Liebe zum Detail zubereitet.</p>
+                            <p class="mb-4">Genießen Sie aromatische Currys, frisch gebackenes Naan und
+                                Tandoori-Spezialitäten. Lassen Sie sich von der Vielfalt und Gastfreundschaft Indiens
+                                begeistern – wir freuen uns auf Ihren Besuch!</p>
+                            <a class="btn btn-primary py-3 px-5 mt-2" href="">Mehr erfahren</a>
+                            <div class="row g-4 mb-4">
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">
+                                            15
+                                        </h1>
+                                        <div class="ps-4">
+                                            <p class="mb-0">Years of</p>
+                                            <h6 class="text-uppercase mb-0">Experience</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="d-flex align-items-center border-start border-5 border-primary px-3">
+                                        <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">
+                                            50
+                                        </h1>
+                                        <div class="ps-4">
+                                            <p class="mb-0">Popular</p>
+                                            <h6 class="text-uppercase mb-0">Master Chefs</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- About End -->
+            <!-- About End -->
 
 
-
-
-
-        <!-- Menu Start -->
-        <div id="menu" class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Speisekarte</h5>
-                    <h1 class="mb-5">Beliebteste Gerichte</h1>
+            <!-- Impressum Start -->
+            <section id="impressum" class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s"
+                style="background: #f8f9fa; border-radius: 1rem; margin-bottom: 2rem;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="text-center mb-4">
+                                <h2 class="section-title ff-secondary text-primary fw-bold mb-2">MOTI MAHAL</h2>
+                                <h4 class="text-secondary mb-2">Indisches Restaurant</h4>
+                                <h5 class="fw-normal mb-3">Herzlich Willkommen · Welcome</h5>
+                            </div>
+                            <div class="impressum-content bg-white p-4 p-md-5 rounded shadow-sm">
+                                <p class="lead fw-semibold">Verehrter Gast,</p>
+                                <p>Wir heißen Sie herzlich willkommen in unserem Restaurant Swagatam. Unser Ziel ist es,
+                                    Ihnen die kulinarischen Extravaganzen der Großen Mogul-Küche zu präsentieren.
+                                    Erleben Sie bei uns eine gemütliche Atmosphäre, Gastfreundschaft und Erinnerungen an
+                                    goldene Zeiten, als jede Mahlzeit ein Fest war.</p>
+                                <p>Indische Küche ist vielfältig und gesund: Gewürze und Kräuter sorgen nicht nur für
+                                    Geschmack und Aroma, sondern sind auch wohltuend für die Verdauung. Chilis sind
+                                    reich an Vitamin C, Bockschornklee belebt die Leber, Ingwer und Pfefferkörner helfen
+                                    der Verdauung, Koriander ist gut für die Nieren. Wir verwenden nur die feinsten und
+                                    frischesten Zutaten für unsere Gerichte.</p>
+                                <p>Wir laden Sie ein zu einem kulinarischen Abenteuer – mit einem herzlichen Willkommen
+                                    aus tiefstem Herzen. Unsere Gäste sind unsere Freunde.</p>
+                                <p>Passend zum indischen Essen bieten wir beste Paulaner Biere, Weine sowie typische
+                                    indische alkoholfreie Getränke.</p>
+                                <p class="mb-1"><strong>Öffnungszeiten:</strong></p>
+                                <ul class="list-unstyled mb-3">
+                                    <li>Mittags: 11:30 – 14:30 Uhr</li>
+                                    <li>Abends: 17:30 – 23:30 Uhr</li>
+                                    <li>Freitag & Samstag: bis 24:00 Uhr</li>
+                                </ul>
+                                <hr>
+                                <h5 class="fw-bold text-primary mt-4 mb-3">Geheimnisse der indischen Küche</h5>
+                                <p>Das Geheimnis liegt in der Auswahl und Abstimmung der Gewürze sowie deren sorgfältige
+                                    Zubereitung. Der Tandoor (Holzkohle-Lehmofen) ist das Herzstück unserer Küche – hier
+                                    werden Brote wie Nan und viele Spezialitäten frisch gebacken.</p>
+                                <p>Nan ersetzt oft Besteck: Mit Nan-Stückchen nimmt man Speisen auf. Die rechte Hand ist
+                                    dabei die Esshand – die linke bleibt für andere Aufgaben.</p>
+                                <p>Das Wort „Curry“ stammt vom tamilischen „Kari“ (Tunke). In Indien gibt es kein
+                                    einheitliches Curry-Gewürz – jede Küche hat ihre eigene, geheime Mischung.</p>
+                                <p>Wir wünschen Ihnen guten Appetit! Gerichte, die nicht auf der Karte stehen, bereiten
+                                    wir gerne nach Ihren Wünschen zu.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5 owl-carousel category-carousel"
-                        id="menu-categories">
-                        <!-- Menu categories will be dynamically inserted here -->
-                    </ul>
-                    <div class="tab-content" id="menu-items-container">
-                        <!-- Menu items will be dynamically inserted here -->
+            </section>
+            <!-- Impressum End -->
+
+
+
+
+            <!-- Menu Start -->
+            <div id="menu" class="container-xxl py-5">
+                <div class="container">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Speisekarte</h5>
+                        <h1 class="mb-5">Beliebteste Gerichte</h1>
+                    </div>
+                    <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="category-slider-wrapper">
+                            <button class="category-arrow left" type="button" aria-label="Scroll left">&#8592;</button>
+                            <div id="menu-categories"
+                                class="category-slider nav nav-pills d-flex flex-nowrap justify-content-start border-bottom mb-5">
+                            </div>
+                            <button class="category-arrow right" type="button"
+                                aria-label="Scroll right">&#8594;</button>
+                        </div>
+                        <div class="tab-content" id="menu-items-container">
+                            <!-- Menu items will be dynamically inserted here -->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Menu End -->
+            <!-- Menu End -->
 
-        <!-- Load Menu Data -->
-        <script src="data/menu.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Check if menu is available (from menu.js)
-                if (typeof menu === 'undefined') {
-                    console.error('Menu data not found. Make sure menu.js is loaded correctly.');
-                    return;
-                }
+            <!-- Load Menu Data -->
+            <script src="data/menu.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Check if menu is available (from menu.js)
+                    if (typeof menu === 'undefined') {
+                        console.error('Menu data not found. Make sure menu.js is loaded correctly.');
+                        return;
+                    }
 
-                // Get categories from the menu structure
-                const categoryContainer = document.getElementById('menu-categories');
-                const menuItemsContainer = document.getElementById('menu-items-container');
+                    // Get categories from the menu structure
+                    const categoryContainer = document.getElementById('menu-categories');
+                    const menuItemsContainer = document.getElementById('menu-items-container');
 
-                // Define the "Mittagskarte" category with its description
-                const mittagskarteCategory = {
-                    category: "Mittagskarte",
-                    headline: "Business Lunch Menu Montag bis Freitag 11:30 bis 17:00 Uhr (außer Feiertagen)",
-                    items: [
-                        // Combine items from the removed categories
-                        ...(menu.find(cat => cat.category === "Vegetarische-Gerichte")?.items || []),
-                        ...(menu.find(cat => cat.category === "Hähnchenfleisch-Gerichte")?.items || []),
-                        ...(menu.find(cat => cat.category === "Lammfleisch-Gerichte")?.items || []),
-                        ...(menu.find(cat => cat.category === "Entenfleisch-Gerichte")?.items || []),
-                        ...(menu.find(cat => cat.category === "Rindfleisch-Gerichte")?.items || []),
-                        ...(menu.find(cat => cat.category === "Tandoori")?.items || []),
-                        ...(menu.find(cat => cat.category === "Thali")?.items || []),
-                        ...(menu.find(cat => cat.category === "Beilagen")?.items || [])
-                    ]
-                };
+                    // Define the "Mittagskarte" category with its description
+                    const mittagskarteCategory = {
+                        category: "Mittagskarte",
+                        headline: "Business Lunch Menu Montag bis Freitag 11:30 bis 17:00 Uhr (außer Feiertagen)",
+                        items: [
+                            // Combine items from the removed categories
+                            ...(menu.find(cat => cat.category === "Vegetarische-Gerichte")?.items || []),
+                            ...(menu.find(cat => cat.category === "Hähnchenfleisch-Gerichte")?.items || []),
+                            ...(menu.find(cat => cat.category === "Lammfleisch-Gerichte")?.items || []),
+                            ...(menu.find(cat => cat.category === "Entenfleisch-Gerichte")?.items || []),
+                            ...(menu.find(cat => cat.category === "Rindfleisch-Gerichte")?.items || []),
+                            ...(menu.find(cat => cat.category === "Tandoori")?.items || []),
+                            ...(menu.find(cat => cat.category === "Thali")?.items || []),
+                            ...(menu.find(cat => cat.category === "Beilagen")?.items || [])
+                        ]
+                    };
 
-                // Use all categories, including the "Mittagskarte"
-                const displayedCategories = [
-                    mittagskarteCategory,
-                    ...menu.filter(cat =>
-                        ![
-                            "Thali",
-                            "Vegetarische-Gerichte",
-                            "Hähnchenfleisch-Gerichte",
-                            "Lammfleisch-Gerichte",
-                            "Entenfleisch-Gerichte",
-                            "Rindfleisch-Gerichte",
-                            "Tandoori",
-                            "Beilagen"
-                        ].includes(cat.category)
-                    )
-                ];
+                    // Use all categories, including the "Mittagskarte"
+                    const displayedCategories = [
+                        mittagskarteCategory,
+                        ...menu.filter(cat =>
+                            ![
+                                "Thali",
+                                "Vegetarische-Gerichte",
+                                "Hähnchenfleisch-Gerichte",
+                                "Lammfleisch-Gerichte",
+                                "Entenfleisch-Gerichte",
+                                "Rindfleisch-Gerichte",
+                                "Tandoori",
+                                "Beilagen"
+                            ].includes(cat.category)
+                        )
+                    ];
 
-                // Replace the default tab nav with a carousel structure
-                categoryContainer.className = "owl-carousel category-carousel border-bottom mb-5";
-                categoryContainer.innerHTML = ""; // Clear any existing content
+                    // Replace the default tab nav with a slider structure
+                    const sliderWrapper = document.querySelector('.category-slider-wrapper');
+                    const slider = document.getElementById('menu-categories');
+                    const leftArrow = sliderWrapper.querySelector('.category-arrow.left');
+                    const rightArrow = sliderWrapper.querySelector('.category-arrow.right');
+                    slider.innerHTML = ""; // Clear any existing content
 
-                // Generate menu content
-                displayedCategories.forEach((categoryObj, index) => {
-                    // Create tab for category in carousel format
-                    const isActive = index === 0 ? 'active' : '';
-                    const categoryId = `tab-${index + 1}`;
-                    const categoryName = categoryObj.category;
-                    const iconClass = getCategoryIcon(categoryName);
+                    // Generate menu content
+                    displayedCategories.forEach((categoryObj, index) => {
+                        const isActive = index === 0 ? 'active' : '';
+                        const categoryId = `tab-${index + 1}`;
+                        const categoryName = categoryObj.category;
+                        const iconClass = getCategoryIcon(categoryName);
 
-                    const tabItem = `
+                        const tabItem = `
                         <div class="category-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3 ${isActive}" 
-                               data-bs-toggle="pill" href="#${categoryId}">
+                            <a class="d-flex align-items-center text-start mx-3 pb-3 category-tab ${isActive}" 
+                               data-bs-toggle="pill" href="#${categoryId}" data-category-index="${index}">
                                 <i class="${iconClass} fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">Delicious</small>
                                     <h6 class="mt-n1 mb-0">${formatCategoryName(categoryName)}</h6>
                                 </div>
+                                <span class="active-underline" style="display:${isActive ? 'block' : 'none'}"></span>
                             </a>
                         </div>
                     `;
+                        slider.innerHTML += tabItem;
 
-                    categoryContainer.innerHTML += tabItem;
+                        // Show all items
+                        let itemsHTML = '';
 
-                    // Show all items
-                    let itemsHTML = '';
-
-                    if (categoryObj.items && categoryObj.items.length > 0) {
-                        categoryObj.items.forEach(item => {
-                            itemsHTML += `
+                        if (categoryObj.items && categoryObj.items.length > 0) {
+                            categoryObj.items.forEach(item => {
+                                itemsHTML += `
                                 <div class="col-lg-6">
                                     <div class="menu-item border-start border-5 border-primary px-3">
                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
@@ -519,16 +423,16 @@
                                     </div>
                                 </div>
                             `;
-                        });
-                    }
+                            });
+                        }
 
-                    const headlineHTML = categoryObj.headline
-                        ? `<div class="text-center mb-4">
+                        const headlineHTML = categoryObj.headline
+                            ? `<div class="text-center mb-4">
                                 <h5 class="text-primary">${categoryObj.headline}</h5>
                            </div>`
-                        : '';
+                            : '';
 
-                    const paneHTML = `
+                        const paneHTML = `
                         <div id="${categoryId}" class="tab-pane fade ${isActive ? 'show active' : ''} p-0">
                             ${headlineHTML}
                             <div class="row g-4">
@@ -537,432 +441,352 @@
                         </div>
                     `;
 
-                    menuItemsContainer.innerHTML += paneHTML;
-                });
+                        menuItemsContainer.innerHTML += paneHTML;
+                    });
 
-                // Initialize Owl Carousel when jQuery is ready
-                $(document).ready(function() {
-                    // Give a short delay to ensure DOM is fully ready
-                    setTimeout(function() {
-                        if (!$('.category-carousel').hasClass('owl-loaded')) {
-                            $('.category-carousel').owlCarousel({
-                                loop: false,
-                                margin: 10,
-                                nav: true,
-                                dots: false,
-                                autoWidth: false,
-                                responsive: {
-                                    0: { items: 1 },
-                                    576: { items: 2 },
-                                    768: { items: 3 },
-                                    992: { items: 4 },
-                                    1200: { items: 5 }
-                                },
-                                navText: [
-                                    '<i class="bi bi-arrow-left"></i>',
-                                    '<i class="bi bi-arrow-right"></i>'
-                                ]
-                            });
-                            
-                            console.log('Carousel initialized successfully');
+                    // Add underline style for active tab
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        .category-tab {
+                            position: relative;
                         }
+                        .category-tab .active-underline {
+                            display: block;
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            height: 4px;
+                            background: #8B0000;
+                            border-radius: 2px 2px 0 0;
+                            transition: all 0.2s;
+                        }
+                    `;
+                    document.head.appendChild(style);
 
-                        // Make sure first tab is active
-                        if (!$('.tab-pane.active').length) {
-                            $('#tab-1').addClass('active show');
-                            $('.category-carousel .category-item a').first().addClass('active');
-                        }
-                        
-                        // Set up proper click handling for tabs
-                        $('.category-carousel .category-item a').on('click', function(e) {
-                            e.preventDefault();
-                            
-                            // Remove active class from all tabs and panes
-                            $('.category-carousel .category-item a').removeClass('active');
-                            $('.tab-pane').removeClass('active show');
-                            
-                            // Add active class to clicked tab and corresponding pane
-                            $(this).addClass('active');
-                            $($(this).attr('href')).addClass('active show');
-                            
-                            // Scroll to tab content on mobile
-                            if (window.innerWidth < 768) {
-                                $('html, body').animate({
-                                    scrollTop: $($(this).attr('href')).offset().top - 120
-                                }, 300);
+                    // Slider scroll functionality and tab activation
+                    function activateTab(newIndex) {
+                        const tabs = slider.querySelectorAll('.category-tab');
+                        const underlines = slider.querySelectorAll('.active-underline');
+                        tabs.forEach((tab, i) => {
+                            if (i === newIndex) {
+                                tab.classList.add('active');
+                                underlines[i].style.display = 'block';
+                                // Show corresponding pane
+                                document.getElementById(`tab-${i + 1}`).classList.add('show', 'active');
+                                // Scroll tab into view
+                                tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                            } else {
+                                tab.classList.remove('active');
+                                underlines[i].style.display = 'none';
+                                document.getElementById(`tab-${i + 1}`).classList.remove('show', 'active');
                             }
                         });
-                    }, 500);
-                });
-
-                // Helper function to format category name
-                function formatCategoryName(category) {
-                    // Special handling for categories with dashes
-                    if (category.includes('-')) {
-                        return category.split('-').map(word =>
-                            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                        ).join(' ');
                     }
 
-                    // Special handling for camelCase categories
-                    if (/[a-z][A-Z]/.test(category)) {
-                        return category
-                            .replace(/([a-z])([A-Z])/g, '$1 $2')
-                            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-                            .charAt(0).toUpperCase() + category
+                    slider.addEventListener('click', function (e) {
+                        const tab = e.target.closest('.category-tab');
+                        if (tab) {
+                            const idx = parseInt(tab.getAttribute('data-category-index'));
+                            activateTab(idx);
+                        }
+                    });
+
+                    leftArrow.addEventListener('click', function () {
+                        const tabs = slider.querySelectorAll('.category-tab');
+                        let activeIdx = Array.from(tabs).findIndex(tab => tab.classList.contains('active'));
+                        if (activeIdx > 0) {
+                            activateTab(activeIdx - 1);
+                        } else {
+                            slider.scrollBy({ left: -200, behavior: 'smooth' });
+                        }
+                    });
+                    rightArrow.addEventListener('click', function () {
+                        const tabs = slider.querySelectorAll('.category-tab');
+                        let activeIdx = Array.from(tabs).findIndex(tab => tab.classList.contains('active'));
+                        if (activeIdx < tabs.length - 1) {
+                            activateTab(activeIdx + 1);
+                        } else {
+                            slider.scrollBy({ left: 200, behavior: 'smooth' });
+                        }
+                    });
+
+                    // Optional: hide arrows if not scrollable
+                    function updateArrowVisibility() {
+                        leftArrow.style.visibility = slider.scrollLeft > 10 ? 'visible' : 'hidden';
+                        rightArrow.style.visibility = (slider.scrollWidth - slider.clientWidth - slider.scrollLeft) > 10 ? 'visible' : 'hidden';
+                    }
+                    slider.addEventListener('scroll', updateArrowVisibility);
+                    window.addEventListener('resize', updateArrowVisibility);
+                    setTimeout(updateArrowVisibility, 300);
+
+                    // Make sure this runs after everything else
+                    $(document).ready(function () {
+                        // Small delay to ensure carousel is fully initialized
+                        console.log('Menu navigation initialized');
+
+                    });
+
+
+                    // Helper function to format category name
+                    function formatCategoryName(category) {
+                        // Special handling for categories with dashes
+                        if (category.includes('-')) {
+                            return category.split('-').map(word =>
+                                word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+                            ).join(' ');
+                        }
+
+                        // Special handling for camelCase categories
+                        if (/[a-z][A-Z]/.test(category)) {
+                            return category
                                 .replace(/([a-z])([A-Z])/g, '$1 $2')
                                 .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-                                .slice(1);
-                    }
-
-                    return category.charAt(0).toUpperCase() + category.slice(1);
-                }
-
-                // Helper function to get appropriate icon for category
-                function getCategoryIcon(category) {
-                    const lowerCategory = category.toLowerCase();
-                    const icons = {
-                        'mittagskarte': 'fa fa-utensils',
-                        'suppen': 'fa fa-hotdog',
-                        'kalte vorspeisen': 'fa fa-cheese',
-                        'warme vorspeisen': 'fa fa-temperature-high',
-                        'saladsandtandoori': 'fa fa-salad',
-                        'chickenspecials': 'fa fa-drumstick-bite',
-                        'duckspecials': 'fa fa-feather-alt',
-                        'lambspecials': 'fa fa-bacon',
-                        'beefspecials': 'fa fa-hamburger',
-                        'porkspecials': 'fa fa-piggy-bank',
-                        'fishspecials': 'fa fa-fish',
-                        'vegetarianspecials': 'fa fa-seedling',
-                        'ricespecials': 'fa fa-bowl-rice',
-                        'attachments': 'fa fa-utensils',
-                        'tandooribreadspecialties': 'fa fa-bread-slice',
-                        'desserts': 'fa fa-ice-cream',
-                        'aperitifs': 'fa fa-glass-martini',
-                        'beers': 'fa fa-beer',
-                        'indiandrinks': 'fa fa-glass-whiskey',
-                        'nonalcoholicdrinks': 'fa fa-tint',
-                        'teaspecials': 'fa fa-mug-hot',
-                        'hotdrinks': 'fa fa-coffee',
-                        'whiskyandspirits': 'fa fa-wine-bottle',
-                        'wines': 'fa fa-wine-glass',
-                        'redwines': 'fa fa-wine-glass-alt',
-                        'sparklingwines': 'fa fa-glass-cheers'
-                    };
-
-                    for (const key in icons) {
-                        if (lowerCategory.includes(key) || key.includes(lowerCategory)) {
-                            return icons[key];
+                                .charAt(0).toUpperCase() + category
+                                    .replace(/([a-z])([A-Z])/g, '$1 $2')
+                                    .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
+                                    .slice(1);
                         }
+
+                        return category.charAt(0).toUpperCase() + category.slice(1);
                     }
 
-                    return 'fa fa-utensils';  // default icon
-                }
-            });
+                    // Helper function to get appropriate icon for category
+                    function getCategoryIcon(category) {
+                        const lowerCategory = category.toLowerCase();
+                        const icons = {
+                            'mittagskarte': 'fa fa-utensils',
+                            'suppen': 'fa fa-hotdog',
+                            'kalte vorspeisen': 'fa fa-cheese',
+                            'warme vorspeisen': 'fa fa-temperature-high',
+                            'salads': 'fa fa-seedling',        // <-- add this line
+                            'tandoori': 'fa fa-fire', 
+                            'chickenspecials': 'fa fa-drumstick-bite',
+                            'duckspecials': 'fa fa-feather-alt',
+                            'lambspecials': 'fa fa-bacon',
+                            'beefspecials': 'fa fa-hamburger',
+                            'porkspecials': 'fa fa-piggy-bank',
+                            'fishspecials': 'fa fa-fish',
+                            'vegetarianspecials': 'fa fa-seedling',
+                            'ricespecials': 'fa fa-utensils',
+                            'attachments': 'fa fa-utensils',
+                            'tandooribreadspecialties': 'fa fa-bread-slice',
+                            'desserts': 'fa fa-ice-cream',
+                            'aperitifs': 'fa fa-glass-martini',
+                            'beers': 'fa fa-beer',
+                            'indiandrinks': 'fa fa-glass-whiskey',
+                            'nonalcoholicdrinks': 'fa fa-tint',
+                            'teaspecials': 'fa fa-mug-hot',
+                            'hotdrinks': 'fa fa-coffee',
+                            'whiskyandspirits': 'fa fa-wine-bottle',
+                            'wines': 'fa fa-wine-glass',
+                            'redwines': 'fa fa-wine-glass-alt',
+                            'sparklingwines': 'fa fa-glass-cheers'
+                        };
 
-            // Helper function to format category name
-            function formatCategoryName(category) {
-                // Special handling for categories with dashes
-                if (category.includes('-')) {
-                    return category.split('-').map(word =>
-                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                    ).join(' ');
-                }
+                        for (const key in icons) {
+                            if (lowerCategory.includes(key) || key.includes(lowerCategory)) {
+                                return icons[key];
+                            }
+                        }
 
-                // Special handling for camelCase categories
-                if (/[a-z][A-Z]/.test(category)) {
-                    return category
-                        .replace(/([a-z])([A-Z])/g, '$1 $2')
-                        .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-                        .charAt(0).toUpperCase() + category
-                            .replace(/([a-z])([A-Z])/g, '$1 $2')
-                            .replace(/([A-Z])([A-Z][a-z])/g, '$1 $2')
-                            .slice(1);
-                }
+                        return 'fa fa-utensils';  // default icon
+                    }
+                });
 
-                return category.charAt(0).toUpperCase() + category.slice(1);
-            }
 
-            // Helper function to get appropriate icon for category
-            function getCategoryIcon(category) {
-                const lowerCategory = category.toLowerCase();
-                const icons = {
-                    'mittagskarte': 'fa fa-utensils',
-                    'suppen': 'fa fa-hotdog',
-                    'kalte vorspeisen': 'fa fa-cheese',
-                    'warme vorspeisen': 'fa fa-temperature-high',
-                    'saladsandtandoori': 'fa fa-salad',
-                    'chickenspecials': 'fa fa-drumstick-bite',
-                    'duckspecials': 'fa fa-feather-alt',
-                    'lambspecials': 'fa fa-bacon',
-                    'beefspecials': 'fa fa-hamburger',
-                    'porkspecials': 'fa fa-piggy-bank',
-                    'fishspecials': 'fa fa-fish',
-                    'vegetarianspecials': 'fa fa-seedling',
-                    'ricespecials': 'fa fa-bowl-rice',
-                    'attachments': 'fa fa-utensils',
-                    'tandooribreadspecialties': 'fa fa-bread-slice',
-                    'desserts': 'fa fa-ice-cream',
-                    'aperitifs': 'fa fa-glass-martini',
-                    'beers': 'fa fa-beer',
-                    'indiandrinks': 'fa fa-glass-whiskey',
-                    'nonalcoholicdrinks': 'fa fa-tint',
-                    'teaspecials': 'fa fa-mug-hot',
-                    'hotdrinks': 'fa fa-coffee',
-                    'whiskyandspirits': 'fa fa-wine-bottle',
-                    'wines': 'fa fa-wine-glass',
-                    'redwines': 'fa fa-wine-glass-alt',
-                    'sparklingwines': 'fa fa-glass-cheers'
-                };
-
-                return icons[lowerCategory] || 'fa fa-utensils'; // Default icon
-            }
-        </script>
+            </script>
 
 
 
-        <!-- Reservation Start -->
-        <div id="table" class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="row g-0">
-                <div class="col-12 bg-dark d-flex align-items-center">
-                    <div class="p-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 700px; margin: 0 auto;">
-                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservierung</h5>
-                        <h1 class="text-white mb-4">Tisch online reservieren</h1>
-                        <form>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                        <label for="name">Ihr Name</label>
+            <!-- Reservation Start -->
+            <div id="table" class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row g-0">
+                    <div class="col-12 bg-dark d-flex align-items-center">
+                        <div class="p-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 700px; margin: 0 auto;">
+                            <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservierung</h5>
+                            <h1 class="text-white mb-4">Tisch online reservieren</h1>
+                            <form>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <label for="name">Ihr Name</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                        <label for="email">Ihr Email</label>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Your Email">
+                                            <label for="email">Ihr Email</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating date" id="date3" data-target-input="nearest">
-                                        <input type="text" class="form-control datetimepicker-input" id="datetime"
-                                            placeholder="Date & Time" data-target="#date3"
-                                            data-toggle="datetimepicker" />
-                                        <label for="datetime">Datum & Uhrzeit</label>
+                                    <div class="col-md-6">
+                                        <div class="form-floating date" id="date3" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" id="datetime"
+                                                placeholder="Date & Time" data-target="#date3"
+                                                data-toggle="datetimepicker" />
+                                            <label for="datetime">Datum & Uhrzeit</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <div class="input-group">
-                                            <div class="form-floating flex-grow-1">
-                                                <input type="number" class="form-control" id="people-count" value="2" min="1"
-                                                    max="20" readonly>
-                                                <label for="people-count">Anzahl der Personen</label>
-                                            </div>
-                                            <div class="input-group-append d-flex">
-                                                <button type="button" class="btn btn-primary h-100" id="decrease-people"><i
-                                                        class="fa fa-minus"></i></button>
-                                                <button type="button" class="btn btn-primary h-100" id="increase-people"><i
-                                                        class="fa fa-plus"></i></button>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <div class="input-group">
+                                                <div class="form-floating flex-grow-1">
+                                                    <input type="number" class="form-control" id="people-count"
+                                                        value="2" min="1" max="20" readonly>
+                                                    <label for="people-count">Anzahl der Personen</label>
+                                                </div>
+                                                <div class="input-group-append d-flex">
+                                                    <button type="button" class="btn btn-primary h-100"
+                                                        id="decrease-people"><i class="fa fa-minus"></i></button>
+                                                    <button type="button" class="btn btn-primary h-100"
+                                                        id="increase-people"><i class="fa fa-plus"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Special Request" id="message"
-                                            style="height: 100px"></textarea>
-                                        <label for="message">Besondere Wünsche</label>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Special Request" id="message"
+                                                style="height: 100px"></textarea>
+                                            <label for="message">Besondere Wünsche</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Jetzt
+                                            reservieren</button>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Jetzt reservieren</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Reservation Start -->
+
+
+
+            <!-- Footer Start -->
+            <div id="contact" class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn"
+                data-wow-delay="0.1s">
+                <div class="container py-5">
+                    <div class="row g-5">
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Unternehmen
+                            </h4>
+                            <a class="btn btn-link" href="">Über uns</a>
+                            <a class="btn btn-link" href="">Kontakt</a>
+                            <a class="btn btn-link" href="">Reservierung</a>
+                            <a class="btn btn-link" href="">Datenschutz</a>
+                            <a class="btn btn-link" href="">AGB</a>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+                            <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a
+                                    href="https://www.google.com/maps/dir//48.24936,11.651442/@48.2493306,11.5690416,12z?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D"
+                                    target="_blank"
+                                    style="color: #F1F8FF; text-decoration: none; transition: color 0.3s;">Bürgerplatz,
+                                    85748 Garching bei München, Germany</a></p>
+                            <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                            <p class="mb-2"><i class="fa fa-envelope me-3"></i>romanmiah56@yahoo.de</p>
+                            <div class="d-flex pt-2">
+                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-outline-light btn-social" href=""><i
+                                        class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                                <a class="btn btn-outline-light btn-social" href=""><i
+                                        class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
+                            <h5 class="text-light fw-normal">Monday - Saturday</h5>
+                            <p>09AM - 09PM</p>
+                            <h5 class="text-light fw-normal">Sunday</h5>
+                            <p>10AM - 08PM</p>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter
+                            </h4>
+                            <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                            <div class="position-relative mx-auto" style="max-width: 400px;">
+                                <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text"
+                                    placeholder="Your email">
+                                <button type="button"
+                                    class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="copyright">
+                        <div class="row">
+
+                            <div class="col-md-6 text-center text-md-end">
+                                <div class="footer-menu">
+                                    <a href="">Home</a>
+                                    <a href="">Cookies</a>
+                                    <a href="">Help</a>
+                                    <a href="">FQAs</a>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!-- Footer End -->
+
+
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
-        <!-- Reservation Start -->
 
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
 
+        <script>
+            // People counter functionality
+            document.addEventListener('DOMContentLoaded', function () {
+                const peopleCount = document.getElementById('people-count');
+                const increaseBtn = document.getElementById('increase-people');
+                const decreaseBtn = document.getElementById('decrease-people');
 
+                // Set initial value
+                peopleCount.value = 2;
 
-        <!-- Testimonial Start -->
-        <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="text-center">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Kundenmeinungen</h5>
-                    <h1 class="mb-5">Was unsere Kunden sagen!!!</h1>
-                </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item bg-transparent border rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Das Essen im MotiMahal ist einfach fantastisch! Die Gewürze sind perfekt ausbalanciert und jedes Gericht ist ein Genuss. Definitiv das beste indische Restaurant in München.</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg"
-                                style="width: 50px; height: 50px;">
-                            <div class="ps-3">
-                                <h5 class="mb-1">Michael Schmidt</h5>
-                                <small>Stammkunde</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-transparent border rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Die Atmosphäre ist gemütlich und der Service erstklassig. Das Lammcurry ist mein absolutes Lieblingsgericht - unbedingt probieren!</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg"
-                                style="width: 50px; height: 50px;">
-                            <div class="ps-3">
-                                <h5 class="mb-1">Julia Weber</h5>
-                                <small>Foodbloggerin</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-transparent border rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Ein verstecktes Juwel in Garching! Die authentischen indischen Gerichte haben mich sofort an meinen letzten Urlaub in Indien erinnert. Sehr zu empfehlen!</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg"
-                                style="width: 50px; height: 50px;">
-                            <div class="ps-3">
-                                <h5 class="mb-1">Thomas Bauer</h5>
-                                <small>Geschäftsmann</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item bg-transparent border rounded p-4">
-                        <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Das Preis-Leistungs-Verhältnis ist hervorragend. Große Portionen, faire Preise und ein freundliches Team. Wir kommen immer wieder gerne!</p>
-                        <div class="d-flex align-items-center">
-                            <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg"
-                                style="width: 50px; height: 50px;">
-                            <div class="ps-3">
-                                <h5 class="mb-1">Anna Müller</h5>
-                                <small>Lehrerin</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Testimonial End -->
+                // Increase people count
+                increaseBtn.addEventListener('click', function () {
+                    let currentValue = parseInt(peopleCount.value);
+                    if (currentValue < 20) {
+                        peopleCount.value = currentValue + 1;
+                    }
+                });
 
-
-        <!-- Footer Start -->
-        <div id="contact" class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Unternehmen</h4>
-                        <a class="btn btn-link" href="">Über uns</a>
-                        <a class="btn btn-link" href="">Kontakt</a>
-                        <a class="btn btn-link" href="">Reservierung</a>
-                        <a class="btn btn-link" href="">Datenschutz</a>
-                        <a class="btn btn-link" href="">AGB</a>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a href="https://www.google.com/maps/dir//48.24936,11.651442/@48.2493306,11.5690416,12z?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color: #F1F8FF; text-decoration: none; transition: color 0.3s;">Bürgerplatz, 85748 Garching bei München, Germany</a></p>
-    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@motimahal.de</p>
-    <div class="d-flex pt-2">
-        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-    </div>
-</div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
-                        <h5 class="text-light fw-normal">Monday - Saturday</h5>
-                        <p>09AM - 09PM</p>
-                        <h5 class="text-light fw-normal">Sunday</h5>
-                        <p>10AM - 08PM</p>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text"
-                                placeholder="Your email">
-                            <button type="button"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-
-    <script>
-        // People counter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const peopleCount = document.getElementById('people-count');
-            const increaseBtn = document.getElementById('increase-people');
-            const decreaseBtn = document.getElementById('decrease-people');
-            
-            // Set initial value
-            peopleCount.value = 2;
-            
-            // Increase people count
-            increaseBtn.addEventListener('click', function() {
-                let currentValue = parseInt(peopleCount.value);
-                if (currentValue < 20) {
-                    peopleCount.value = currentValue + 1;
-                }
+                // Decrease people count
+                decreaseBtn.addEventListener('click', function () {
+                    let currentValue = parseInt(peopleCount.value);
+                    if (currentValue > 1) {
+                        peopleCount.value = currentValue - 1;
+                    }
+                });
             });
-            
-            // Decrease people count
-            decreaseBtn.addEventListener('click', function() {
-                let currentValue = parseInt(peopleCount.value);
-                if (currentValue > 1) {
-                    peopleCount.value = currentValue - 1;
-                }
-            });
-        });
 
-        document.addEventListener('DOMContentLoaded', function() {
-        // Apply redwine color to any elements that might be using Bootstrap's primary color
-        const style = document.createElement('style');
-        style.innerHTML = `
+            document.addEventListener('DOMContentLoaded', function () {
+                // Apply redwine color to any elements that might be using Bootstrap's primary color
+                const style = document.createElement('style');
+                style.innerHTML = `
             .btn-primary, 
             .text-primary,
             .border-primary,
@@ -981,49 +805,49 @@
                 border-color: #8B0000 !important;
             }
         `;
-        document.head.appendChild(style);
-    });
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Handle active state in navigation based on scroll position
-        const sections = document.querySelectorAll('div[id]');
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-        
-        function updateActiveNavLink() {
-            // Get current scroll position
-            let scrollPosition = window.scrollY + 200; // Adding offset to improve detection
-            
-            // Check each section and update nav accordingly
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.offsetHeight;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                    // Remove active class from all links
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    
-                    // Add active class to corresponding nav item
-                    const correspondingNavLink = document.querySelector(`.navbar-nav .nav-link[href="#${sectionId}"]`);
-                    if (correspondingNavLink) {
-                        correspondingNavLink.classList.add('active');
-                    } else if (scrollPosition < document.getElementById('about').offsetTop) {
-                        // If we're at the top of the page, highlight home
-                        document.querySelector('.navbar-nav .nav-link[href="#"]').classList.add('active');
-                    }
-                }
+                document.head.appendChild(style);
             });
-        }
-        
-        // Initial call to set active link based on position when page loads
-        updateActiveNavLink();
-        
-        // Update active link when scrolling
-        window.addEventListener('scroll', updateActiveNavLink);
-    });
-    </script>
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Handle active state in navigation based on scroll position
+                const sections = document.querySelectorAll('div[id]');
+                const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+                function updateActiveNavLink() {
+                    // Get current scroll position
+                    let scrollPosition = window.scrollY + 200; // Adding offset to improve detection
+
+                    // Check each section and update nav accordingly
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+                        const sectionId = section.getAttribute('id');
+
+                        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                            // Remove active class from all links
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                            });
+
+                            // Add active class to corresponding nav item
+                            const correspondingNavLink = document.querySelector(`.navbar-nav .nav-link[href="#${sectionId}"]`);
+                            if (correspondingNavLink) {
+                                correspondingNavLink.classList.add('active');
+                            } else if (scrollPosition < document.getElementById('about').offsetTop) {
+                                // If we're at the top of the page, highlight home
+                                document.querySelector('.navbar-nav .nav-link[href="#"]').classList.add('active');
+                            }
+                        }
+                    });
+                }
+
+                // Initial call to set active link based on position when page loads
+                updateActiveNavLink();
+
+                // Update active link when scrolling
+                window.addEventListener('scroll', updateActiveNavLink);
+            });
+        </script>
 </body>
 
 </html>

@@ -152,8 +152,8 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(2px) brightness(1.15); /* Added brightness to create a white blur effect */
-    -webkit-filter: blur(2px) brightness(1.15); /* For Safari support */
+    filter: blur(0.5px) brightness(1); /* Added brightness to create a white blur effect */
+    -webkit-filter: blur(0.5px) brightness(1); /* For Safari support */
     z-index: -1;
 }
 
