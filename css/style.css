@@ -509,7 +509,11 @@
     filter: none;
     transition: all 0.3s ease;
 }
-
+.hero-img {
+    width: 90%;      /* Adjust as needed, e.g., 60%, 300px, etc. */
+    max-width: 350px; /* Optional: set a max width */
+    border-radius: 1rem; /* Optional: adjust border radius if you want more/less rounding */
+}
 .text-primary {
     color: var(--primary) !important;
 }
