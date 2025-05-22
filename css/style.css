@@ -1,9 +1,10 @@
 /********** Template CSS **********/
 :root {
-    --primary: #FEA116;
+    --primary: #8B0000; /* Changed from #FEA116 (orange) to #8B0000 (redwine) */
     --light: #F1F8FF;
     --dark: #0F172B;
 }
+
 
 .ff-secondary {
     font-family: 'Pacifico', cursive;
@@ -82,34 +83,18 @@
 
 
 /*** Navbar ***/
-.navbar-dark .navbar-nav .nav-link {
+.navbar-dark {
     position: relative;
-    margin-left: 25px;
-    padding: 35px 0;
-    font-size: 15px;
-    color: var(--light) !important;
-    text-transform: uppercase;
-    font-weight: 500;
-    outline: none;
-    transition: .5s;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: var(--dark) !important; /* Always show background */
 }
 
-.sticky-top.navbar-dark .navbar-nav .nav-link {
-    padding: 20px 0;
-}
-
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link.active {
-    color: var(--primary) !important;
-}
-
-.navbar-dark .navbar-brand img {
-    max-height: 60px;
-    transition: .5s;
-}
-
-.sticky-top.navbar-dark .navbar-brand img {
-    max-height: 45px;
+.sticky-top.navbar-dark {
+    position: fixed;
+    background: var(--dark) !important;
 }
 
 @media (max-width: 991.98px) {
@@ -140,7 +125,7 @@
         top: 0;
         left: 0;
         z-index: 999;
-        background: transparent !important;
+        background: var(--dark) !important; /* Changed from transparent to dark */
     }
     
     .sticky-top.navbar-dark {
@@ -152,10 +137,35 @@
 
 /*** Hero Header ***/
 .hero-header {
-    background: linear-gradient(rgba(15, 23, 43, .9), rgba(15, 23, 43, .9)), url(../img/bg-hero.jpg);
+    position: relative;
+    z-index: 1;
+}
+
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../img/logo.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    filter: blur(2px) brightness(1.15); /* Added brightness to create a white blur effect */
+    -webkit-filter: blur(2px) brightness(1.15); /* For Safari support */
+    z-index: -1;
+}
+
+.hero-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15); /* Adding a white overlay for more whitish blur */
+    z-index: -1;
 }
 
 .hero-header img {
@@ -476,4 +486,12 @@
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+}
+
+.logo-img {
+    height: 60px;
+    width: auto;
+    /* Removing the orange filter */
+    filter: none;
+    transition: all 0.3s ease;
 }

@@ -137,27 +137,106 @@
             position: absolute;
             width: 40px;
             height: 40px;
-            background: rgba(var(--primary-rgb), 0.2) !important;
+            background: rgba(139, 0, 0, 0.2) !important;
+            /* Redwine color with transparency */
             border-radius: 50%;
+            color: #8B0000 !important;
+            font-size: 20px !important;
             transition: all 0.3s ease;
             top: 50%;
             transform: translateY(-50%);
-            visibility: visible;
-            opacity: 1;
             pointer-events: auto;
-            /* Re-enable clicks on buttons */
-            z-index: 10;
-            /* Ensure buttons are above other content */
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .category-carousel .owl-nav button:hover {
+            background: rgba(139, 0, 0, 0.5) !important;
+            color: #ffffff !important;
+        }
+
+        .category-carousel .owl-nav button span {
+            font-size: 26px;
+            line-height: 0.5;
         }
 
         .category-carousel .owl-nav button.owl-prev {
-            left: 0px;
-            /* Position at far left */
+            left: -20px;
         }
 
         .category-carousel .owl-nav button.owl-next {
-            right: 0px;
-            /* Position at far right */
+            right: -20px;
+        }
+
+        .category-carousel .category-item a.active {
+            border-bottom: 3px solid #8B0000;
+            /* Changed from var(--bs-primary) to direct redwine color */
+            position: relative;
+        }
+
+        /* Update the dot indicator under active category to redwine */
+        .category-carousel .category-item a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #8B0000;
+            /* Changed from var(--primary) to direct redwine color */
+            border-radius: 50%;
+        }
+
+        /* Add navigation buttons to carousel with redwine color */
+        .category-carousel .owl-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+        }
+
+        /* Style the navigation buttons with redwine color */
+        .category-carousel .owl-nav button {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(139, 0, 0, 0.2) !important;
+            /* Redwine color with transparency */
+            border-radius: 50%;
+            color: #8B0000 !important;
+            font-size: 20px !important;
+            transition: all 0.3s ease;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: auto;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .category-carousel .owl-nav button:hover {
+            background: rgba(139, 0, 0, 0.5) !important;
+            color: #ffffff !important;
+        }
+
+        .category-carousel .owl-nav button span {
+            font-size: 26px;
+            line-height: 0.5;
+        }
+
+        .category-carousel .owl-nav button.owl-prev {
+            left: -20px;
+        }
+
+        .category-carousel .owl-nav button.owl-next {
+            right: -20px;
         }
 
         /* People counter styling */
@@ -204,7 +283,7 @@
             /* Slight grow effect on hover */
         }
     </style>
-    </head>
+</head>
 
 <body>
     <div class="container-xxl bg-white p-0">
@@ -223,8 +302,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
     <h1 class="text-primary m-0">
-        <img src="img/logo.jpeg" alt="MotiMahal Logo" class="me-2 rounded logo-img">
-        MotiMahal
+        <i class="fa fa-utensils me-3"></i>MotiMahal
     </h1>
 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -243,25 +321,24 @@
             </nav>
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container my-5 py-5">
-                    <div class="row align-items-center g-5">
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="display-3 text-white animated slideInLeft">Genießen Sie unser<br>köstliches
-                                Essen</h1>
-                            <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita.
-                                Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
-                                sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                            <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
-                                reservieren</a>
-                            <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                            <img class="img-fluid" src="img/midpic.png" alt="">
-                        </div>
-                    </div>
-                </div>
+    <div class="container my-5 py-5">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 text-dark animated slideInLeft">Genießen Sie unser<br>köstliches
+                    Essen</h1>
+                <p class="text-dark animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita.
+                    Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et
+                    sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                <a href="#table" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Tisch
+                    reservieren</a>
+                <a href="#menu" class="btn btn-primary py-sm-3 px-sm-5 animated slideInLeft">Speisekarte</a>
+            </div>
+            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                <img class="img-fluid" src="img/midpic.png" alt="">
             </div>
         </div>
+    </div>
+</div>
         <!-- Navbar & Hero End -->
 
 
@@ -291,7 +368,7 @@
                     </div>
                     <div class="col-lg-6">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Über uns</h5>
-                        <h1 class="mb-4">Willkommen bei <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
+                        <h1 class="mb-4">Willkommen bei <i class="fa fa-utensils text-primary me-2"></i>MotiMahal</h1>
                         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
                             diam et eos erat ipsum et lorem et sit, sed stet lorem sit.</p>
                         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet
@@ -471,7 +548,7 @@
                             $('.category-carousel').owlCarousel({
                                 loop: false,
                                 margin: 10,
-                                nav: false,
+                                nav: true,
                                 dots: false,
                                 autoWidth: false,
                                 responsive: {
@@ -722,53 +799,49 @@
                 <div class="owl-carousel testimonial-carousel">
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore
-                            diam</p>
+                        <p>Das Essen im MotiMahal ist einfach fantastisch! Die Gewürze sind perfekt ausbalanciert und jedes Gericht ist ein Genuss. Definitiv das beste indische Restaurant in München.</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg"
                                 style="width: 50px; height: 50px;">
                             <div class="ps-3">
-                                <h5 class="mb-1">Kundenname</h5>
-                                <small>Beruf</small>
+                                <h5 class="mb-1">Michael Schmidt</h5>
+                                <small>Stammkunde</small>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore
-                            diam</p>
+                        <p>Die Atmosphäre ist gemütlich und der Service erstklassig. Das Lammcurry ist mein absolutes Lieblingsgericht - unbedingt probieren!</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg"
                                 style="width: 50px; height: 50px;">
                             <div class="ps-3">
-                                <h5 class="mb-1">Client Name</h5>
-                                <small>Profession</small>
+                                <h5 class="mb-1">Julia Weber</h5>
+                                <small>Foodbloggerin</small>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore
-                            diam</p>
+                        <p>Ein verstecktes Juwel in Garching! Die authentischen indischen Gerichte haben mich sofort an meinen letzten Urlaub in Indien erinnert. Sehr zu empfehlen!</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg"
                                 style="width: 50px; height: 50px;">
                             <div class="ps-3">
-                                <h5 class="mb-1">Client Name</h5>
-                                <small>Profession</small>
+                                <h5 class="mb-1">Thomas Bauer</h5>
+                                <small>Geschäftsmann</small>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore
-                            diam</p>
+                        <p>Das Preis-Leistungs-Verhältnis ist hervorragend. Große Portionen, faire Preise und ein freundliches Team. Wir kommen immer wieder gerne!</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg"
                                 style="width: 50px; height: 50px;">
                             <div class="ps-3">
-                                <h5 class="mb-1">Client Name</h5>
-                                <small>Profession</small>
+                                <h5 class="mb-1">Anna Müller</h5>
+                                <small>Lehrerin</small>
                             </div>
                         </div>
                     </div>
@@ -791,17 +864,17 @@
                         <a class="btn btn-link" href="">AGB</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
-                        <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
+    <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
+    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><a href="https://www.google.com/maps/dir//48.24936,11.651442/@48.2493306,11.5690416,12z?entry=ttu&g_ep=EgoyMDI1MDUxNS4wIKXMDSoASAFQAw%3D%3D" target="_blank" style="color: #F1F8FF; text-decoration: none; transition: color 0.3s;">Bürgerplatz, 85748 Garching bei München, Germany</a></p>
+    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@motimahal.de</p>
+    <div class="d-flex pt-2">
+        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+    </div>
+</div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
                         <h5 class="text-light fw-normal">Monday - Saturday</h5>
@@ -885,6 +958,71 @@
                 }
             });
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        // Apply redwine color to any elements that might be using Bootstrap's primary color
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .btn-primary, 
+            .text-primary,
+            .border-primary,
+            .bg-primary {
+                --bs-primary: #8B0000 !important;
+                --bs-primary-rgb: 139, 0, 0 !important;
+            }
+            .btn-primary {
+                background-color: #8B0000 !important;
+                border-color: #8B0000 !important;
+            }
+            .text-primary {
+                color: #8B0000 !important;
+            }
+            .border-primary {
+                border-color: #8B0000 !important;
+            }
+        `;
+        document.head.appendChild(style);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle active state in navigation based on scroll position
+        const sections = document.querySelectorAll('div[id]');
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        
+        function updateActiveNavLink() {
+            // Get current scroll position
+            let scrollPosition = window.scrollY + 200; // Adding offset to improve detection
+            
+            // Check each section and update nav accordingly
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // Remove active class from all links
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    // Add active class to corresponding nav item
+                    const correspondingNavLink = document.querySelector(`.navbar-nav .nav-link[href="#${sectionId}"]`);
+                    if (correspondingNavLink) {
+                        correspondingNavLink.classList.add('active');
+                    } else if (scrollPosition < document.getElementById('about').offsetTop) {
+                        // If we're at the top of the page, highlight home
+                        document.querySelector('.navbar-nav .nav-link[href="#"]').classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Initial call to set active link based on position when page loads
+        updateActiveNavLink();
+        
+        // Update active link when scrolling
+        window.addEventListener('scroll', updateActiveNavLink);
+    });
     </script>
 </body>
 
