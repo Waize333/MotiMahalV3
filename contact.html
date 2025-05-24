@@ -7,6 +7,9 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Add EmailJS CDN -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         body {
             background: #f4f4f4;
@@ -44,14 +47,20 @@
                 padding: 1.2rem 0.5rem;
             }
         }
+        
+        /* Add styles for success and error messages */
+        .alert {
+            display: none;
+            margin-top: 1rem;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
         <a href="" class="navbar-brand p-0 d-flex align-items-center">
-                    <img src="img/logo.jpeg" class="logo-img me-2" alt="MotiMahal Logo">
-                    <h1 class="text-primary m-0">MotiMahal</h1>
-                </a>
+            <img src="img/logo.jpeg" class="logo-img me-2" alt="MotiMahal Logo">
+            <h1 class="text-primary m-0">MotiMahal</h1>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
@@ -61,10 +70,10 @@
                 <a href="index.html#about" class="nav-item nav-link">Über uns</a>
                 <a href="index.html#menu" class="nav-item nav-link">Speisekarte</a>
                 <a href="contact.html" class="nav-item nav-link active">Kontakt</a>
-        
             </div>
         </div>
     </nav>
+    
     <div class="container py-5">
         <div class="contact-card">
             <h1 class="mb-4 text-center contact-title"><i class="fa fa-envelope-open-text me-2"></i>Kontakt</h1>
@@ -72,24 +81,103 @@
                 <p><i class="fa fa-phone"></i>+0893201116</p>
                 <p><i class="fa fa-envelope"></i><a href="mailto:romanmiah56@yahoo.de" style="color:var(--primary);text-decoration:underline;">romanmiah56@yahoo.de</a></p>
             </div>
-            <form>
+            
+            <!-- Alert messages for feedback -->
+            <div class="alert alert-success" id="success-message" role="alert">
+                Vielen Dank für Ihre Nachricht! Wir werden uns bald bei Ihnen melden.
+            </div>
+            <div class="alert alert-danger" id="error-message" role="alert">
+                Es gab ein Problem beim Versenden Ihrer Nachricht. Bitte versuchen Sie es später noch einmal.
+            </div>
+            
+            <!-- Contact form with proper ID -->
+            <form id="contact-form" onsubmit="return submitContactForm(event)">
                 <div class="mb-3">
                     <label for="name" class="form-label">Ihr Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Ihr Name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Ihr Name" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Ihre E-Mail</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ihre E-Mail">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Ihre E-Mail" required>
                 </div>
                 <div class="mb-3">
                     <label for="message" class="form-label">Nachricht</label>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Ihre Nachricht"></textarea>
+                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Ihre Nachricht" required></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary px-5">Absenden</button>
+                    <button type="submit" class="btn btn-primary px-5" id="submit-btn">Absenden</button>
                 </div>
             </form>
         </div>
     </div>
+
+    <!-- JavaScript for contact form -->
+    <script>
+        // Initialize EmailJS with your public key
+        document.addEventListener('DOMContentLoaded', function() {
+            emailjs.init("AcC2MAJb7zVCgOJR8");
+        });
+        
+        // Contact form submission handler
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            // Get the form and button
+            const form = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-btn');
+            
+            // Show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Wird gesendet...';
+            
+            // Hide any previous messages
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+            
+            // Prepare template parameters for EmailJS
+            const templateParams = {
+                name: form.name.value,
+                email: form.email.value,
+                message: form.message.value,
+                restaurant_email: 'motimahal.booking@gmail.com',
+                restaurant_name: 'MotiMahal'
+            };
+            
+            // Send email to restaurant team - make sure to use the contact template ID
+            emailjs.send('service_903ldab', 'template_contact', templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully!', response.status, response.text);
+                    
+                    // Show success message
+                    document.getElementById('success-message').style.display = 'block';
+                    
+                    // Reset the form
+                    form.reset();
+                    
+                    // Reset button state after 3 seconds
+                    setTimeout(() => {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = 'Absenden';
+                    }, 3000);
+                })
+                .catch(function(error) {
+                    // Log error
+                    console.error('Contact email error:', error);
+                    
+                    // Show error message
+                    document.getElementById('error-message').style.display = 'block';
+                    
+                    // Reset button state
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Absenden';
+                });
+            
+            return false;
+        }
+    </script>
+    
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
