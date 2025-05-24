@@ -10,6 +10,8 @@
     <style>
         body {
             background: #f4f4f4;
+            /* Add padding to account for fixed navbar */
+            padding-top: 90px; 
         }
         .impressum-content {
             font-size: 1.08rem;
@@ -30,6 +32,18 @@
             .impressum-content {
                 padding: 1.5rem !important;
             }
+            /* Adjust padding for smaller screens */
+            body {
+                padding-top: 76px;
+            }
+        }
+        /* Ensure the navbar stays on top */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
         }
     </style>
 </head>
