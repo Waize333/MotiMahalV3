@@ -13,7 +13,7 @@
         }
         .gallery-section {
             background: #fff;
-            border-radius: 1.5rem;
+            border-radius: 0.5rem;
             box-shadow: 0 8px 32px rgba(0,0,0,0.10);
             padding: 2.5rem 1.5rem;
             margin-top: 2.5rem;
@@ -26,44 +26,34 @@
             font-size: 2.5rem;
             margin-bottom: 2.5rem;
         }
-        .gallery-masonry {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .gallery-row {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-        }
-        .gallery-row.single {
-            justify-content: center;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
         }
         .gallery-item {
             background: #f8f9fa;
-            border-radius: 1rem;
+            border-radius: 0.3rem;
             overflow: hidden;
             box-shadow: 0 2px 12px rgba(0,0,0,0.07);
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            cursor: pointer;
             opacity: 0;
-            transform: translateY(40px) scale(0.97);
             animation: fadeInUp 0.7s forwards;
-        }
-        .gallery-row .gallery-item {
-            flex: 1 1 0;
-            min-width: 180px;
-            max-width: 400px;
-        }
-        .gallery-row.single .gallery-item {
-            max-width: 600px;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .gallery-item img {
             width: 100%;
-            height: 260px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 1rem 1rem 0 0;
+            border-radius: 0.3rem;
             transition: filter 0.3s;
+            display: block;
+            aspect-ratio: 1 / 1;
         }
         .gallery-item:hover {
             transform: translateY(-8px) scale(1.03);
@@ -72,23 +62,24 @@
         .gallery-item:hover img {
             filter: brightness(0.92) saturate(1.2);
         }
-        .gallery-caption {
-            padding: 0.7rem 1rem 1rem 1rem;
-            text-align: center;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 1.08rem;
-            letter-spacing: 1px;
-        }
-        /* Staggered animation delays */
-        .gallery-item:nth-child(1) { animation-delay: 0.1s; }
-        .gallery-item:nth-child(2) { animation-delay: 0.2s; }
-        .gallery-item:nth-child(3) { animation-delay: 0.3s; }
-        .gallery-item:nth-child(4) { animation-delay: 0.4s; }
-        .gallery-item:nth-child(5) { animation-delay: 0.5s; }
-        .gallery-item:nth-child(6) { animation-delay: 0.6s; }
-        .gallery-item:nth-child(7) { animation-delay: 0.7s; }
-        .gallery-item:nth-child(8) { animation-delay: 0.8s; }
+        /* Creative grid placement */
+        .gallery-item.item1 { grid-column: 1 / 3; grid-row: 1 / 2; }
+        .gallery-item.item2 { grid-column: 3 / 4; grid-row: 1 / 2; }
+        .gallery-item.item3 { grid-column: 4 / 5; grid-row: 1 / 3; }
+        .gallery-item.item4 { grid-column: 1 / 2; grid-row: 2 / 4; }
+        .gallery-item.item5 { grid-column: 2 / 4; grid-row: 2 / 3; }
+        .gallery-item.item6 { grid-column: 2 / 3; grid-row: 3 / 4; }
+        .gallery-item.item7 { grid-column: 3 / 5; grid-row: 3 / 4; }
+        .gallery-item.item8 { grid-column: 1 / 5; grid-row: 4 / 5; }
+        /* Animation delays for staggered effect */
+        .gallery-item.item1 { animation-delay: 0.1s; }
+        .gallery-item.item2 { animation-delay: 0.2s; }
+        .gallery-item.item3 { animation-delay: 0.3s; }
+        .gallery-item.item4 { animation-delay: 0.4s; }
+        .gallery-item.item5 { animation-delay: 0.5s; }
+        .gallery-item.item6 { animation-delay: 0.6s; }
+        .gallery-item.item7 { animation-delay: 0.7s; }
+        .gallery-item.item8 { animation-delay: 0.8s; }
         @keyframes fadeInUp {
             to {
                 opacity: 1;
@@ -102,22 +93,65 @@
             .gallery-title {
                 font-size: 2rem;
             }
-            .gallery-item img {
-                height: 170px;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .gallery-row .gallery-item,
-            .gallery-row.single .gallery-item {
-                max-width: 100%;
+            .gallery-item img {
+                aspect-ratio: 1 / 1;
+            }
+            .gallery-item.item1,
+            .gallery-item.item2,
+            .gallery-item.item3,
+            .gallery-item.item4,
+            .gallery-item.item5,
+            .gallery-item.item6,
+            .gallery-item.item7,
+            .gallery-item.item8 {
+                grid-column: auto;
+                grid-row: auto;
             }
         }
         @media (max-width: 575px) {
-            .gallery-row {
-                flex-direction: column;
-                gap: 1rem;
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
             .gallery-item img {
-                height: 120px;
+                aspect-ratio: 1 / 1;
             }
+        }
+        /* Lightbox styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+            background: #fff;
+            padding: 0.5rem;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10001;
+            transition: color 0.2s;
+        }
+        .lightbox-close:hover {
+            color: var(--primary);
         }
     </style>
 </head>
@@ -142,50 +176,56 @@
     </nav>
     <div class="container gallery-section">
         <h1 class="gallery-title text-center"><i class="fa fa-images me-2"></i>Bildergalerie</h1>
-        <div class="gallery-masonry">
-            <div class="gallery-row">
-                <div class="gallery-item">
-                    <img src="img/p1.jpeg" alt="Bild 1">
-                    <div class="gallery-caption">Bild 1</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="img/p2.jpeg" alt="Bild 2">
-                    <div class="gallery-caption">Bild 2</div>
-                </div>
-            </div>
-            <div class="gallery-row single">
-                <div class="gallery-item">
-                    <img src="img/p3.jpeg" alt="Bild 3">
-                    <div class="gallery-caption">Bild 3</div>
-                </div>
-            </div>
-            <div class="gallery-row">
-                <div class="gallery-item">
-                    <img src="img/p4.jpeg" alt="Bild 4">
-                    <div class="gallery-caption">Bild 4</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="img/p5.jpeg" alt="Bild 5">
-                    <div class="gallery-caption">Bild 5</div>
-                </div>
-            </div>
-            <div class="gallery-row single">
-                <div class="gallery-item">
-                    <img src="img/p6.jpeg" alt="Bild 6">
-                    <div class="gallery-caption">Bild 6</div>
-                </div>
-            </div>
-            <div class="gallery-row">
-                <div class="gallery-item">
-                    <img src="img/p7.jpeg" alt="Bild 7">
-                    <div class="gallery-caption">Bild 7</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="img/p8.jpeg" alt="Bild 8">
-                    <div class="gallery-caption">Bild 8</div>
-                </div>
-            </div>
+        <div class="gallery-grid">
+            <div class="gallery-item item1"><img src="img/p1.jpeg" alt="Bild 1"></div>
+            <div class="gallery-item item2"><img src="img/p2.jpeg" alt="Bild 2"></div>
+            <div class="gallery-item item3"><img src="img/p3.jpeg" alt="Bild 3"></div>
+            <div class="gallery-item item4"><img src="img/p4.jpeg" alt="Bild 4"></div>
+            <div class="gallery-item item5"><img src="img/p5.jpeg" alt="Bild 5"></div>
+            <div class="gallery-item item6"><img src="img/p6.jpeg" alt="Bild 6"></div>
+            <div class="gallery-item item7"><img src="img/p7.jpeg" alt="Bild 7"></div>
+            <div class="gallery-item item8"><img src="img/p8.jpeg" alt="Bild 8"></div>
         </div>
     </div>
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Bild">
+    </div>
+    <script>
+        // Lightbox functionality
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        galleryItems.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+
+        // Close lightbox on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+
+        // Optional: Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+    </script>
 </body>
 </html>

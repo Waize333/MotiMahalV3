@@ -166,9 +166,9 @@
     background: url(../img/logo.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: cover; /
-    filter: none; /* Remove blur and brightness */
-    -webkit-filter: none;
+    background-size: cover;
+    filter: blur(4px); /* <-- Add this line, adjust the value for more/less blur */
+    -webkit-filter: blur(4px); /* For Safari */
     z-index: -1;
 }
 
