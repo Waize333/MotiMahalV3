@@ -125,6 +125,32 @@
             border-radius: 2px 2px 0 0;
             transition: all 0.2s;
         }
+
+        .menu-item h5 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Align items to the top */
+        flex-wrap: wrap; /* Allow wrapping */
+    }
+
+    .menu-item h5 span:first-child {
+        flex: 1; /* Allow the name to take up available space */
+        word-wrap: break-word; /* Break long words if necessary */
+        white-space: normal; /* Allow wrapping */
+        margin-bottom: 0.5rem; /* Add spacing between name and price */
+    }
+
+    .menu-item h5 span:last-child {
+        white-space: nowrap; /* Ensure the price stays on the same line */
+        margin-left: 1rem; /* Add spacing between name and price */
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 576px) {
+        .menu-item h5 {
+            font-size: 1rem; /* Adjust font size for smaller screens */
+        }
+    }
     </style>
 </head>
 
