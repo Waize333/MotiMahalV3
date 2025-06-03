@@ -61,9 +61,12 @@
             min-width: 180px;
             max-width: 220px;
         }
+
         .footer-heading {
-        color: #212529 !important; /* This is Bootstrap's default heading color */
-    }
+            color: #212529 !important;
+            /* This is Bootstrap's default heading color */
+        }
+
         .category-arrow {
             position: absolute;
             top: 50%;
@@ -82,7 +85,7 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        
+
         .category-arrow:hover {
             background: #a30000;
         }
@@ -127,30 +130,39 @@
         }
 
         .menu-item h5 {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start; /* Align items to the top */
-        flex-wrap: wrap; /* Allow wrapping */
-    }
-
-    .menu-item h5 span:first-child {
-        flex: 1; /* Allow the name to take up available space */
-        word-wrap: break-word; /* Break long words if necessary */
-        white-space: normal; /* Allow wrapping */
-        margin-bottom: 0.5rem; /* Add spacing between name and price */
-    }
-
-    .menu-item h5 span:last-child {
-        white-space: nowrap; /* Ensure the price stays on the same line */
-        margin-left: 1rem; /* Add spacing between name and price */
-    }
-
-    /* Adjustments for smaller screens */
-    @media (max-width: 576px) {
-        .menu-item h5 {
-            font-size: 1rem; /* Adjust font size for smaller screens */
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            /* Align items to the top */
+            flex-wrap: wrap;
+            /* Allow wrapping */
         }
-    }
+
+        .menu-item h5 span:first-child {
+            flex: 1;
+            /* Allow the name to take up available space */
+            word-wrap: break-word;
+            /* Break long words if necessary */
+            white-space: normal;
+            /* Allow wrapping */
+            margin-bottom: 0.5rem;
+            /* Add spacing between name and price */
+        }
+
+        .menu-item h5 span:last-child {
+            white-space: nowrap;
+            /* Ensure the price stays on the same line */
+            margin-left: 1rem;
+            /* Add spacing between name and price */
+        }
+
+        /* Adjustments for smaller screens */
+        @media (max-width: 576px) {
+            .menu-item h5 {
+                font-size: 1rem;
+                /* Adjust font size for smaller screens */
+            }
+        }
     </style>
 </head>
 
@@ -598,8 +610,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="date" class="form-control" id="date" name="date" 
-                                                   min="2025-06-03" required />
+                                            <input type="date" class="form-control" id="date" name="date"
+                                                min="2025-06-03" required />
                                             <label for="date">Datum</label>
                                         </div>
                                     </div>
@@ -707,7 +719,8 @@
                             <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0893201116</p>
                             <p class="mb-2"><i class="fa fa-envelope me-3"></i>romanmiah56@yahoo.de</p>
                             <div class="d-flex pt-2">
-                                <a class="btn btn-outline-danger btn-social" href="https://www.facebook.com/share/1K3jcQnJX9/"
+                                <a class="btn btn-outline-danger btn-social"
+                                    href="https://www.facebook.com/share/1K3jcQnJX9/"
                                     style="border-color: #8B0000; color: #8B0000;"><i class="fab fa-facebook-f"></i></a>
                             </div>
                         </div>
@@ -836,65 +849,7 @@
                         window.addEventListener('scroll', updateActiveNavLink);
                     });
 
-                    document.addEventListener('DOMContentLoaded', function () {
-    const daySelect = document.getElementById('day');
-    const monthSelect = document.getElementById('month');
-    const yearSelect = document.getElementById('year');
-    
-    // Populate years (current year + 1 year ahead)
-    const currentYear = new Date().getFullYear();
-    for (let year = currentYear; year <= currentYear + 1; year++) {
-        const option = document.createElement('option');
-        option.value = year;
-        option.textContent = year;
-        yearSelect.appendChild(option);
-    }
-    
-    // Set default year to current year
-    yearSelect.value = currentYear;
-    
-    // Function to update the days in the day dropdown based on selected month and year
-    function updateDays() {
-        const year = parseInt(yearSelect.value) || currentYear;
-        const month = parseInt(monthSelect.value) || 0;
-        
-        // Clear existing days
-        daySelect.innerHTML = '<option value="" disabled selected>Tag</option>';
-        
-        if (month > 0) {
-            // Get the number of days in the selected month
-            const daysInMonth = new Date(year, month, 0).getDate();
-            
-            // Add days to the dropdown
-            for (let day = 1; day <= daysInMonth; day++) {
-                const option = document.createElement('option');
-                option.value = day;
-                option.textContent = day;
-                daySelect.appendChild(option);
-            }
-            
-            // Disable past dates
-            if (year === currentYear && month === new Date().getMonth() + 1) {
-                const currentDay = new Date().getDate();
-                Array.from(daySelect.options).forEach(option => {
-                    if (option.value !== "" && parseInt(option.value) < currentDay) {
-                        option.disabled = true;
-                    }
-                });
-            }
-        }
-    }
-    
-    // Update days when month or year changes
-    monthSelect.addEventListener('change', updateDays);
-    yearSelect.addEventListener('change', updateDays);
-    
-    // Set current month as default and initialize days
-    const currentMonth = new Date().getMonth() + 1; // JavaScript months are 0-indexed
-    monthSelect.value = currentMonth;
-    updateDays();
-});
-                </script>
+                                    </script>
                 <script type="text/javascript"
                     src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
                 <script>
@@ -902,86 +857,80 @@
                         // Initialize EmailJS with your user ID
                         emailjs.init("AcC2MAJb7zVCgOJR8"); // Replace with your actual EmailJS user ID
 
-                    
+
                     });
 
                     function submitReservation(event) {
-    event.preventDefault();
-    console.log("Form submission started");
+                        event.preventDefault();
+                        console.log("Form submission started");
 
-    // Get the form
-    const form = document.getElementById('reservation-form');
-    const submitButton = document.getElementById('reservation-submit-btn');
+                        const form = document.getElementById('reservation-form');
+                        const submitButton = document.getElementById('reservation-submit-btn');
 
-    // Show loading state
-    submitButton.disabled = true;
-    submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Wird gesendet...';
+                        // Show loading state
+                        submitButton.disabled = true;
+                        submitButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Wird gesendet...';
 
-    // Get date and time values
-    const date = form.date.value; // Already in DD/MM/YYYY format from picker
-    const time = form.time.value;
-    
-    // Validate both are selected
-    if (!date || !time) {
-        alert("Bitte wählen Sie Datum und Uhrzeit aus.");
-        submitButton.disabled = false;
-        submitButton.innerHTML = 'Jetzt reservieren';
-        return false;
-    }
-    
-    // Combine date and time for email - date already in DD/MM/YYYY format
-    const datetime = `${date} ${time}`;
-    console.log("Reservation details:", {
-        name: form.name.value,
-        email: form.email.value,
-        datetime: datetime,
-        people: form.people.value
-    });
+                        const date = form.date.value; // Format: YYYY-MM-DD
+                        const time = form.time.value; // Format: HH:mm
 
-    // Prepare template parameters for EmailJS
-    const templateParams = {
-        name: form.name.value,
-        email: form.email.value,
-        datetime: datetime, // Combined date and time
-        people: form.people.value,
-        message: form.message.value,
-        restaurant_email: 'motimahal.booking@gmail.com',
-        restaurant_name: 'MotiMahal'
-    };
+                        if (!date || !time) {
+                            alert("Bitte wählen Sie Datum und Uhrzeit aus.");
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = 'Jetzt reservieren';
+                            return false;
+                        }
 
-    // First send confirmation to customer
-    emailjs.send('service_903ldab', 'template_6wcvw19', templateParams)
-        .then(function (response) {
-            console.log('Customer email SUCCESS!', response.status, response.text);
-            // Then send notification to restaurant
-            return emailjs.send('service_903ldab', 'template_2e06iow', templateParams);
-        })
-        .then(function (response) {
-            console.log('Restaurant email SUCCESS!', response.status, response.text);
-            // Both emails sent successfully
-            document.getElementById('success-message').style.display = 'block';
-            document.getElementById('error-message').style.display = 'none';
-            form.reset();
+                        // Combine and format date and time
+                        const datetime = new Date(`${date}T${time}`);
+                        const formattedDatetime = datetime.toLocaleString('de-DE', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit',
+                        }); // Example: "04.06.2025, 11:30"
 
-            // Reset button state after 3 seconds
-            setTimeout(() => {
-                submitButton.disabled = false;
-                submitButton.innerHTML = 'Jetzt reservieren';
-            }, 3000);
-        })
-        .catch(function (error) {
-            // Handle errors
-            console.error('Reservation email error:', error);
-            document.getElementById('error-message').style.display = 'block';
-            document.getElementById('success-message').style.display = 'none';
+                        console.log("Formatted datetime:", formattedDatetime);
 
-            // Reset button state
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Jetzt reservieren';
-        });
+                        const templateParams = {
+                            name: form.name.value,
+                            email: form.email.value,
+                            datetime: formattedDatetime, // Use the formatted datetime
+                            people: form.people.value,
+                            message: form.message.value,
+                            restaurant_email: 'motimahal.booking@gmail.com',
+                            restaurant_name: 'MotiMahal'
+                        };
 
-    return false;
-}
+                        // Send emails using EmailJS
+                        emailjs.send('service_903ldab', 'template_6wcvw19', templateParams)
+                            .then(function (response) {
+                                console.log('Customer email SUCCESS!', response.status, response.text);
+                                return emailjs.send('service_903ldab', 'template_2e06iow', templateParams);
+                            })
+                            .then(function (response) {
+                                console.log('Restaurant email SUCCESS!', response.status, response.text);
+                                document.getElementById('success-message').style.display = 'block';
+                                document.getElementById('error-message').style.display = 'none';
+                                form.reset();
+
+                                setTimeout(() => {
+                                    submitButton.disabled = false;
+                                    submitButton.innerHTML = 'Jetzt reservieren';
+                                }, 3000);
+                            })
+                            .catch(function (error) {
+                                console.error('Reservation email error:', error);
+                                document.getElementById('error-message').style.display = 'block';
+                                document.getElementById('success-message').style.display = 'none';
+
+                                submitButton.disabled = false;
+                                submitButton.innerHTML = 'Jetzt reservieren';
+                            });
+
+                        return false;
+                    }
                 </script>
 </body>
 
