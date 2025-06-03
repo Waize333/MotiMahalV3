@@ -27,25 +27,52 @@
             margin-bottom: 2.5rem;
         }
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 columns for larger screens */
-            gap: 1.5rem; /* Increase spacing between items */
-        }
-        /* Adjust grid layout for larger screens */
-        @media (min-width: 1200px) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 200px;
+        grid-auto-flow: dense;
+        gap: 1rem;
+    }
+        /* Adjust grid layout for different screen sizes */
+        @media (min-width: 1400px) {
             .gallery-grid {
-                grid-template-columns: repeat(4, 1fr); /* 4 columns for extra-large screens */
+                grid-template-columns: repeat(5, 1fr);
+                grid-auto-rows: 220px;
             }
         }
-        /* Adjust grid layout for smaller screens */
-        @media (max-width: 991px) {
+
+        @media (min-width: 992px) and (max-width: 1399px) {
             .gallery-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 200px;
             }
         }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 180px;
+            }
+        }
+
+        @media (min-width: 576px) and (max-width: 767px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 160px;
+            }
+        }
+
         @media (max-width: 575px) {
             .gallery-grid {
-                grid-template-columns: 1fr; /* 1 column for small screens */
+                grid-template-columns: repeat(1, 1fr);
+                grid-auto-rows: auto;
+            }
+            
+            /* Make all items full width on mobile and set aspect ratio */
+            .gallery-item {
+                grid-column: auto !important; /* Override any span settings */
+                grid-row: auto !important;
+                aspect-ratio: 3/2;
             }
         }
         .gallery-item {
@@ -62,7 +89,7 @@
         }
         .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 100%; /* Make image fill the entire container */
             object-fit: cover;
             border-radius: 0.3rem;
             transition: filter 0.3s;
@@ -108,6 +135,61 @@
         .lightbox-close:hover {
             color: var(--primary);
         }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10001;
+            transition: color 0.2s;
+        }
+        .lightbox-prev {
+            left: 20px;
+        }
+        .lightbox-next {
+            right: 20px;
+        }
+        .lightbox-nav:hover {
+            color: var(--primary);
+        }
+        /* Adjust lightbox for mobile */
+        @media (max-width: 767px) {
+            .lightbox-nav {
+                font-size: 1.5rem;
+            }
+            
+            .lightbox-prev {
+                left: 10px;
+            }
+            
+            .lightbox-next {
+                right: 10px;
+            }
+            
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+            }
+        }
+        
+        /* Handle featured items responsively */
+    @media (min-width: 768px) {
+        .featured-item {
+            grid-column: span 2 !important;
+            grid-row: span 2 !important;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        /* On smaller screens, let featured items take full width but normal height */
+        .featured-item {
+            grid-column: 1 / -1 !important;
+            grid-row: auto !important;
+            aspect-ratio: 16/9;
+        }
+    }
     </style>
 </head>
 <body>
@@ -131,43 +213,179 @@
         </div>
     </nav>
   
+    <div class="container gallery-section">
+        <h1 class="gallery-title text-center"><i class="fa fa-images me-2"></i>Bildergalerie</h1>
+        <div class="gallery-grid">
+            <!-- Row 1 - Featured images -->
+            <div class="gallery-item featured-item" style="grid-column: span 2; grid-row: span 2;">
+                <img src="img/gallery/pic7.jpeg" alt="Moti Mahal Restaurant">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic2.jpeg" alt="Indische Spezialität">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic6.jpeg" alt="Indisches Gericht">
+            </div>
+            
+            <!-- More gallery images -->
+            <div class="gallery-item">
+                <img src="img/gallery/pic4.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic5.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item" style="grid-column: span 2;">
+                <img src="img/gallery/pic8.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic1.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic3.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic9.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic10.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item" style="grid-row: span 2;">
+                <img src="img/gallery/pic11.jpeg" alt="Indisches Gericht" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic12.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic13.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic14.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic15.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic16.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item" style="grid-column: span 2;">
+                <img src="img/gallery/pic17.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic18.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic19.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic20.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic21.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic22.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic23.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic24.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item" style="grid-column: span 2;">
+                <img src="img/gallery/pic25.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic26.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic27.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic28.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic29.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic30.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic31.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic32.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item">
+                <img src="img/gallery/pic33.jpeg" alt="Indisches Gericht">
+            </div>
+            <div class="gallery-item" style="grid-column: span 2;">
+                <img src="img/gallery/pic34.jpeg" alt="Indisches Gericht">
+            </div>
+        </div>
+    </div>
+  
     <!-- Lightbox Modal -->
     <div class="lightbox" id="lightbox">
         <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&lt;</span>
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">&gt;</span>
         <img class="lightbox-img" id="lightboxImg" src="" alt="Bild">
     </div>
     <script>
-        // Lightbox functionality
+        // Lightbox functionality with navigation
         const galleryItems = document.querySelectorAll('.gallery-item img');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentIndex = 0;
 
-        galleryItems.forEach(img => {
+        galleryItems.forEach((img, index) => {
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src;
+                currentIndex = index;
+                showImage(currentIndex);
                 lightbox.classList.add('active');
             });
         });
 
+        function showImage(index) {
+            lightboxImg.src = galleryItems[index].src;
+        }
+
+        lightboxPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            showImage(currentIndex);
+        });
+
+        lightboxNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            showImage(currentIndex);
+        });
+
         lightboxClose.addEventListener('click', () => {
             lightbox.classList.remove('active');
-            lightboxImg.src = '';
         });
 
         // Close lightbox on outside click
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) {
                 lightbox.classList.remove('active');
-                lightboxImg.src = '';
             }
         });
 
-        // Optional: Close on ESC key
+        // Optional: Close on ESC key, navigate with arrow keys
         document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
             if (e.key === "Escape") {
                 lightbox.classList.remove('active');
-                lightboxImg.src = '';
+            } else if (e.key === "ArrowLeft") {
+                currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+                showImage(currentIndex);
+            } else if (e.key === "ArrowRight") {
+                currentIndex = (currentIndex + 1) % galleryItems.length;
+                showImage(currentIndex);
             }
         });
     </script>
