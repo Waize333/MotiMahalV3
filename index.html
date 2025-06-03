@@ -597,10 +597,9 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-floating date" id="date3" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" id="date"
-                                                name="date" placeholder="Datum" data-target="#date3"
-                                                data-toggle="datetimepicker" autocomplete="off" required />
+                                        <div class="form-floating">
+                                            <input type="date" class="form-control" id="date" name="date" 
+                                                   min="2025-06-03" required />
                                             <label for="date">Datum</label>
                                         </div>
                                     </div>
@@ -903,39 +902,7 @@
                         // Initialize EmailJS with your user ID
                         emailjs.init("AcC2MAJb7zVCgOJR8"); // Replace with your actual EmailJS user ID
 
-                        // Initialize date picker
-                        $(function () {
-                            $('#date3').datetimepicker({
-                                format: 'DD/MM/YYYY',
-                                locale: 'de',
-                                icons: {
-                                    time: 'fa fa-clock',
-                                    date: 'fa fa-calendar',
-                                    up: 'fa fa-arrow-up',
-                                    down: 'fa fa-arrow-down',
-                                    previous: 'fa fa-chevron-left',
-                                    next: 'fa fa-chevron-right',
-                                    today: 'fa fa-calendar-check',
-                                    clear: 'fa fa-trash',
-                                    close: 'fa fa-times'
-                                },
-                                minDate: moment().startOf('day'),
-                                useCurrent: true, // Use current date as default
-                                buttons: {
-                                    showToday: true
-                                }
-                            });
-                            
-                            // Force calendar to open when the input is clicked
-                            $('#date').on('click', function() {
-                                $('#date3').datetimepicker('show');
-                            });
-                            
-                            // Also make the label clickable to open calendar
-                            $('label[for="date"]').on('click', function() {
-                                $('#date3').datetimepicker('show');
-                            });
-                        });
+                    
                     });
 
                     function submitReservation(event) {
