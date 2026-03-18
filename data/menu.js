@@ -6,37 +6,37 @@ var menu = [
         id: "M1",
         name: "Dal Tarka",
         description: "Nationalgericht Indiens - Gelbe Linsen mit Butter zubereitet",
-        price: "6,90 €"
+        price: "7,90 €"
       },
       {
         id: "M2",
         name: "Chana Masala",
         description: "Kichererbsen in Curry mit frischen Tomaten und Ingwer",
-        price: "7,90 €"
+        price: "8,50 €"
       },
       {
         id: "M3",
         name: "Navratan Korma",
         description: "Frisches Gemüse in Kokosnuss-Creme-Soße",
-        price: "8,50 €"
+        price: "8,90 €"
       },
       {
         id: "M4",
         name: "Vegetarische Jalfrezi",
         description: "Gemüse mit Paprika, Tomaten & Zwiebeln - scharf",
-        price: "8,50 €"
+        price: "8,90 €"
       },
       {
         id: "M5",
         name: "Shahi Paneer",
         description: "Hausgemachter Käse in Tomaten-Creme-Soße, fein gewürzt",
-        price: "8,50 €"
+        price: "8,90 €"
       },
       {
         id: "M6",
         name: "Palak Paneer",
         description: "Kräftiger indischer Spinat mit hausgemachtem Käse",
-        price: "8,50 €"
+        price: "8,90 €"
       }
     ]
   },
@@ -827,7 +827,7 @@ items:[
           category: "Vegetarische Spezialitäten",
           name: "Dal Tarka",
           description: "Indisches Nationalgericht, gelbe Linsen mit Butter zubereitet / National dish of India, yellow lentils prepared with butter",
-          price: "7,90 €"
+          price: "12,90 €"
         },
         {
           id: "107",
