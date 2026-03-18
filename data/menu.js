@@ -827,21 +827,21 @@ items:[
           category: "Vegetarische Spezialitäten",
           name: "Dal Tarka",
           description: "Indisches Nationalgericht, gelbe Linsen mit Butter zubereitet / National dish of India, yellow lentils prepared with butter",
-          price: "11,90 €"
+          price: "7,90 €"
         },
         {
           id: "107",
           category: "Vegetarische Spezialitäten",
           name: "Navratan Korma",
           description: "Frisches Gemüse in Kokosnuss-Sahne-Soße / Fresh vegetables in coconut cream sauce",
-          price: "12,90 €"
+          price: "8,90 €"
         },
         {
           id: "108",
           category: "Vegetarische Spezialitäten",
           name: "Paneer Lababdar",
           description: "Hausgemachter Käse mit Zwiebeln und Tomaten in Soße / Homemade cheese with onions and tomatoes in sauce",
-          price: "12,90 €"
+          price: "8,90 €"
         },
         {
           id: "109",
